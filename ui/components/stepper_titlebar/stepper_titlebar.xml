@@ -1,0 +1,51 @@
+<component>
+	<previews>
+		<preview width="320" height="240" style_bg_color="0xeee" />
+	</previews>
+
+	<api>
+		<!-- Add your API here here. For example 
+		<prop name="prop1" type="int" default="0" help="What is this property?"/>
+		-->
+	</api>
+
+	<styles>
+		<style
+			name="style_base"
+			text_color="#white"
+			width="100%"
+			height="23"
+			border_side="bottom"
+			border_width="1"
+			border_color="#grey"
+			pad_hor="4"
+		/>
+		<style name="center_title" text_color="#white" border_side="none" bg_opa="1" height="content" />
+		<style name="dot" bg_color="#grey" margin_right="4" width="12" height="12" radius="12" bg_opa="255" />
+		<style name="st_active" bg_color="#running" text_color="#running" />
+	</styles>
+
+	<view extends="row">
+		<style name="style_base" />
+		<lv_label text="STEPPER" />
+		<lv_obj flex_grow="1">
+			<style name="center_title" />
+			<lv_label bind_text="load_str" align="center" />
+		</lv_obj>
+		<row width="content" height="100%">
+			<lv_obj>
+				<remove_style />
+				<style name="dot" />
+				<style name="st_active" selector="user_1" />
+				<bind_state_if_eq subject="stepper_status" ref_value="1" state="user_1" />
+			</lv_obj>
+			<lv_label text="RUN">
+				<style name="st_active" />
+				<bind_flag_if_not_eq flag="hidden" subject="stepper_status" ref_value="1" />
+			</lv_label>
+			<lv_label text="IDLE">
+				<bind_flag_if_eq flag="hidden" subject="stepper_status" ref_value="1" />
+			</lv_label>
+		</row>
+	</view>
+</component>

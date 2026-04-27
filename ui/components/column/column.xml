@@ -1,0 +1,20 @@
+<component>
+	<previews>
+		<preview width="320" height="240" style_bg_color="0xeee" />
+	</previews>
+
+	<api>
+		<!-- Add your API here here. For example 
+		<prop name="prop1" type="int" default="0" help="What is this property?"/>
+		-->
+	</api>
+
+	<styles>
+		<style name="style_base" layout="flex" flex_flow="column" flex_cross_place="center" flex_track_place="center" />
+	</styles>
+
+	<view extends="lv_obj">
+		<remove_style />
+		<style name="style_base" />
+	</view>
+</component>

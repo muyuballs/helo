@@ -1,0 +1,38 @@
+<component>
+	<previews>
+		<preview width="320" height="240" style_bg_color="0xeee" />
+	</previews>
+
+	<api>
+		<prop name="c_height" type="int" default="26" />
+	</api>
+
+	<styles>
+		<style
+			name="style_base"
+			width="100%"
+			height="content"
+			pad_row="4"
+			flex_cross_place="start"
+			bg_color="0x6688ee"
+		/>
+		<style name="radio_item" height="100%" />
+	</styles>
+
+	<view extends="column">
+		<style name="style_base" />
+		<lv_label text="DRIVER">
+			<style name="section_title" />
+		</lv_label>
+		<row width="100%" height="$c_height" style_pad_column="4">
+			<radio flex_grow="1" label="TMC220X">
+				<style name="radio_item" />
+				<bind_state_if_eq state="checked" subject="driver_type" ref_value="0" />
+			</radio>
+			<radio flex_grow="1" label="A4988">
+				<style name="radio_item" />
+				<bind_state_if_eq state="checked" subject="driver_type" ref_value="1" />
+			</radio>
+		</row>
+	</view>
+</component>

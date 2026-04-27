@@ -1,0 +1,7 @@
+<project name="ui_helo">
+	<targets>
+		<target name="target1">
+			<display width="240" height="240" color_format="rgb565" />
+		</target>
+	</targets>
+</project>

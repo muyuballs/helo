@@ -1,0 +1,29 @@
+<component>
+	<previews>
+		<preview width="240" height="240" style_bg_color="0xeee" />
+	</previews>
+
+	<api>
+		<!-- Add your API here here. For example 
+		<prop name="prop1" type="int" default="0" help="What is this property?"/>
+		-->
+		<prop name="label" type="string" default="radio" />
+	</api>
+
+	<styles>
+		<style name="style_base" bg_opa="255" border_width="0" radius="255" bg_color="#grey" />
+		<style name="focused" border_width="1" border_color="#red" />
+		<style name="checked" text_color="#white" bg_color="#active" />
+		<style name="disabled" opa="100" />
+	</styles>
+
+	<view extends="lv_obj" checkable="true" click_focusable="true">
+		<!-- Add widgets/components here -->
+		<remove_style />
+		<style name="style_base" />
+		<style name="checked" selector="checked" />
+		<style name="focused" selector="focused" />
+		<style name="disabled" selector="disabled" />
+		<lv_label text="$label" align="center" />
+	</view>
+</component>

@@ -1,0 +1,40 @@
+<screen>
+	<styles>
+		<style name="style_main" width="100%" height="100%" bg_color="#black" bg_opa="255" />
+		<style name="content" pad_all="4" pad_row="6" width="100%" flex_grow="1" />
+		<style
+			name="rpm_container"
+			flex_grow="1"
+			border_width="2"
+			border_color="#darkGrey"
+			bg_color="#grey"
+			bg_opa="255"
+			radius="8"
+			width="100%"
+		/>
+		<style name="rpm_container_active" bg_color="#active" text_color="#white" border_side="none" />
+		<style name="rpm_info" pad_column="2" text_color="#darkGrey" width="content" height="100%" align="center" />
+	</styles>
+
+	<view extends="column" scrollable="false" scrollbar_mode="off">
+		<style name="style_main" />
+		<stepper_titlebar />
+		<column>
+			<style name="content" />
+			<driver_switch c_height="22" />
+			<micro_steps c_height="22" />
+			<rotate_dir c_height="22" />
+			<lv_obj>
+				<remove_style />
+				<style name="rpm_container" />
+				<style name="rpm_container_active" selector="user_1" />
+				<bind_state_if_eq subject="stepper_status" ref_value="1" state="user_1" />
+				<row scrollbar_mode="off" scrollable="false">
+					<style name="rpm_info" />
+					<lv_label text="0" />
+					<lv_label text="rpm" />
+				</row>
+			</lv_obj>
+		</column>
+	</view>
+</screen>

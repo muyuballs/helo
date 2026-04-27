@@ -1,0 +1,60 @@
+<component>
+	<previews>
+		<preview width="320" height="240" style_bg_color="0xeee" />
+	</previews>
+
+	<api>
+		<prop name="c_height" type="int" default="26" />
+	</api>
+
+	<styles>
+		<style
+			name="style_base"
+			width="100%"
+			height="content"
+			pad_row="4"
+			flex_cross_place="start"
+			bg_color="0x6688ee"
+		/>
+		<style name="radio_item" height="100%" />
+	</styles>
+
+	<view extends="column">
+		<style name="style_base" />
+		<lv_label text="MICRO STEPS">
+			<style name="section_title" />
+		</lv_label>
+		<row width="100%" height="$c_height" style_pad_column="4">
+			<radio flex_grow="1" label="1">
+				<style name="radio_item" />
+				<bind_state_if_eq state="checked" subject="micro_steps" ref_value="1" />
+			</radio>
+			<radio flex_grow="1" label="8">
+				<style name="radio_item" />
+				<bind_state_if_eq state="checked" subject="micro_steps" ref_value="8" />
+			</radio>
+			<radio flex_grow="1" label="16">
+				<style name="radio_item" />
+				<bind_state_if_eq state="checked" subject="micro_steps" ref_value="16" />
+			</radio>
+			<radio flex_grow="1" label="32">
+				<style name="radio_item" />
+				<bind_state_if_eq state="checked" subject="micro_steps" ref_value="32" />
+			</radio>
+			<radio flex_grow="1" label="64">
+				<style name="radio_item" />
+				<bind_state_if_eq state="checked" subject="micro_steps" ref_value="64" />
+			</radio>
+			<radio flex_grow="1" label="128">
+				<style name="radio_item" />
+				<bind_state_if_not_eq state="disabled" subject="driver_type" ref_value="0" />
+				<bind_state_if_eq state="checked" subject="micro_steps" ref_value="128" />
+			</radio>
+			<radio flex_grow="1" label="256">
+				<style name="radio_item" />
+				<bind_state_if_not_eq state="disabled" subject="driver_type" ref_value="0" />
+				<bind_state_if_eq state="checked" subject="micro_steps" ref_value="256" />
+			</radio>
+		</row>
+	</view>
+</component>

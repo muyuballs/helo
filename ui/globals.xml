@@ -1,0 +1,46 @@
+<globals>
+	<api>
+		<!-- Add <enumdefs> here -->
+	</api>
+
+	<consts>
+		<!-- Add <px>, <int>, <color> etc here -->
+		<color name="grey" value="0xe2e2e2" />
+		<color name="white" value="0xffffff" />
+		<color name="green" value="0x00ff00" />
+		<color name="red" value="0xff0000" />
+		<color name="active" value="0x165DFF" />
+		<color name="running" value="0x00B42A" />
+		<color name="section_title_text" value="0x4E5969" />
+		<color name="darkGrey" value="0x919191" />
+		<color name="black" value="0x000000" />
+	</consts>
+
+	<styles>
+		<!-- Add <style> tags here -->
+		<style name="section_title" text_color="#section_title_text" />
+	</styles>
+
+	<subjects>
+		<int name="stepper_status" value="1" />
+
+		<string name="load_str" value="0.0 mA" />
+
+		<int name="driver_type" value="0" />
+		<int name="micro_steps" value="8" />
+		<int name="rotate_dir" value="0" />
+		<float name="rpm" value="0.0" />
+		<float name="vol" value="0.0" />
+		<!-- Add <int>, <string>, or <float> subjects here -->
+	</subjects>
+
+	<images>
+		<!-- Add <file> or <data> tags here -->
+	</images>
+
+	<fonts>
+		<!-- Add <bin> , <tiny_ttf>, <freetype> tags here -->
+		<bin name="font_medium_48" as_file="false" src_path="fonts/Montserrat_Medium.ttf" size="48" bpp="4" />
+		<bin name="font_medium" as_file="false" src_path="fonts/Montserrat_Medium.ttf" size="20" bpp="4" />
+	</fonts>
+</globals>

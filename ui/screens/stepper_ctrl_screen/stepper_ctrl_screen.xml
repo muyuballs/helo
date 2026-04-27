@@ -1,0 +1,39 @@
+<screen>
+	<styles>
+		<style name="style_base" pad_all="4" layout="none" height="100%" width="100%" />
+		<style name="comment_text" text_color="#darkGrey" />
+		<style name="ctrl_base" align="center" width="160" height="160" radius="255" bg_opa="255" bg_color="#grey" />
+		<style name="rpm_base" text_font="font_medium_48" />
+	</styles>
+	<view extends="lv_obj" width="100%" height="100%" scrollable="false" scrollbar_mode="off">
+		<remove_style />
+		<style name="style_base" />
+		<event_cb callback="on_stepper_ctrl_loaded" trigger="screen_loaded" />
+		<event_cb callback="on_stepper_ctrl_keyevent" trigger="key" />
+		<lv_label text="TMC220X">
+			<style name="comment_text" />
+		</lv_label>
+		<lv_label text="1/256" align="top_right">
+			<style name="comment_text" />
+		</lv_label>
+		<lv_label text="CCW" align="bottom_left">
+			<style name="comment_text" />
+		</lv_label>
+		<lv_label bind_text="vol" bind_text-fmt=".1f v" align="bottom_mid">
+			<style name="comment_text" />
+		</lv_label>
+		<lv_label bind_text="load_str" align="bottom_right">
+			<style name="comment_text" />
+		</lv_label>
+		<lv_obj>
+			<remove_style />
+			<style name="ctrl_base" />
+			<column width="content" height="content" align="center" style_flex_cross_place="center">
+				<lv_label bind_text="rpm" bind_text-fmt="%.1f">
+					<style name="rpm_base" />
+				</lv_label>
+				<lv_label text="rpm" />
+			</column>
+		</lv_obj>
+	</view>
+</screen>
