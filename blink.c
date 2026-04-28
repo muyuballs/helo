@@ -84,6 +84,50 @@ void st7789_flush_impl(lv_display_t *disp, const lv_area_t *area, uint8_t *px_ma
     lv_display_flush_ready(disp);
 }
 
+void setup_keypad()
+{
+    uint keys[5] = {KEY_U, KEY_D, KEY_L, KEY_R, KEY_M};
+    for (int i = 0; i < 5; i++)
+    {
+        gpio_init(keys[i]);
+        gpio_set_dir(keys[i], false);
+        gpio_set_pulls(keys[i], true, false);
+    }
+}
+
+void keypad_read_impl(lv_indev_t *indev, lv_indev_data_t *data)
+{
+    data->state = LV_INDEV_STATE_PRESSED;
+    if (gpio_get(KEY_M) == 0)
+    {
+        data->key = LV_KEY_ENTER;
+    }
+    else if (gpio_get(KEY_U) == 0)
+    {
+        data->key = LV_KEY_ESC;
+    }
+    else if (gpio_get(KEY_D) == 0)
+    {
+        data->key = LV_KEY_HOME;
+    }
+    else
+    {
+        data->state = LV_INDEV_STATE_RELEASED;
+        if (gpio_get(KEY_L) == 0)
+        {
+            data->enc_diff = -1;
+        }
+        else if (gpio_get(KEY_R) == 0)
+        {
+            data->enc_diff = 1;
+        }
+        else
+        {
+            data->enc_diff = 0;
+        }
+    }
+}
+
 void setup_lvgl()
 {
     printf("lv init\n");
@@ -97,6 +141,16 @@ void setup_lvgl()
     lv_display_set_flush_cb(disp, st7789_flush_impl);
     printf("lv_display_set_buffers\n");
     lv_display_set_buffers(disp, lv_buffer, NULL, LV_BUF_SIZE, LV_DISPLAY_RENDER_MODE_PARTIAL);
+
+    lv_indev_t *keypad = lv_indev_create();
+    lv_indev_set_mode(keypad, LV_INDEV_MODE_TIMER);
+    lv_indev_set_type(keypad, LV_INDEV_TYPE_ENCODER);
+    lv_indev_set_read_cb(keypad, keypad_read_impl);
+    lv_indev_set_display(keypad, disp);
+
+    lv_group_t *group = lv_group_create();
+    lv_group_set_default(group);
+    lv_indev_set_group(keypad,group);
 
     printf("ui_hello_world_init\n");
     ui_helo_init("");
@@ -119,6 +173,7 @@ int main()
     int rc = pico_led_init();
     hard_assert(rc == PICO_OK);
     setup_st7789_disp();
+    setup_keypad();
     printf("setup lvgl\n");
     setup_lvgl();
     printf("start blink\n");
@@ -139,7 +194,7 @@ int main()
         led_status = !led_status;
         pico_set_led(led_status);
         uint32_t delay = lv_timer_handler();
-        printf("delay = %ld ms\n", delay);
+        // printf("delay = %ld ms\n", delay);
         if (delay == LV_NO_TIMER_READY)
         {
             sleep_ms(LV_DEF_REFR_PERIOD);
@@ -151,13 +206,24 @@ int main()
     }
 }
 
-void on_stepper_ctrl_loaded(lv_event_t * e){
+void on_stepper_ctrl_loaded(lv_event_t *e)
+{
+      printf("on_stepper_ctrl_loaded\n");
     lv_group_t * group = lv_group_get_default();
     lv_group_remove_all_objs(group);
-    lv_obj_t* screen = lv_obj_get_child_by_name(lv_screen_active(),"stepper_ctrl_screen_#");
-    lv_group_add_obj(group,screen);
+    // lv_obj_t* screen = lv_obj_get_child_by_name(lv_screen_active(),"stepper_ctrl_screen_#");
+    lv_group_add_obj(group,lv_screen_active());
 }
 
-void on_stepper_ctrl_keyevent(lv_event_t * e){
-    
+void on_stepper_ctrl_keyevent(lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    printf("event code:%d ", code);
+    if (code == LV_EVENT_KEY)
+    {
+        uint32_t key = lv_event_get_key(e);
+        printf("key: %d", key);
+        
+    }
+    printf("\n");
 }

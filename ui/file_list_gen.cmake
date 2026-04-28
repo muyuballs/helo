@@ -3,6 +3,7 @@ list(
   LV_EDITOR_PROJECT_SOURCES
   ${CMAKE_CURRENT_LIST_DIR}/components/column/column_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/driver_switch/driver_switch_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/components/menu_item/menu_item_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/micro_steps/micro_steps_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/radio/radio_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/rotate_dir/rotate_dir_gen.c
@@ -11,6 +12,7 @@ list(
   ${CMAKE_CURRENT_LIST_DIR}/fonts/font_medium_48_data.c
   ${CMAKE_CURRENT_LIST_DIR}/fonts/font_medium_data.c
   ${CMAKE_CURRENT_LIST_DIR}/screens/screen_hello_world_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/screens/settings_screen/settings_screen_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/screens/stepper_ctrl_screen/stepper_ctrl_screen_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/ui_helo_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/ui_helo.c)

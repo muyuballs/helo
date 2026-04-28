@@ -89,11 +89,6 @@ static inline void _write_pixels(st7789_drv_t *drv, uint8_t *data, size_t count)
     }
 }
 
-void pio_irq_handler(void) {
-    // 清除中断
-    pio_interrupt_clear(pio0, 0);
-}
-
 bool st7789_put_pixels(st7789_drv_t *drv, uint8_t *data, size_t count)
 {
     // if (drv->busy)
@@ -156,6 +151,7 @@ void st7789_drv_setup(st7789_drv_t **drv, PIO pio, uint sm,
     gpio_put((*drv)->cs, 1);
     gpio_put((*drv)->rst, 1);
     lcd_init((*drv), st7789_init_seq);
+
     // uint8_t *buf = malloc(240*2*5);
     // for (int i = 0; i < 240*5; i+=2)
     // {
@@ -166,9 +162,10 @@ void st7789_drv_setup(st7789_drv_t **drv, PIO pio, uint sm,
     // lcd_write_cmd(*drv, cmds, 5);
     // uint8_t cmds2[5] = { 0x2b, 0, 40, 0, 50};
     // lcd_write_cmd(*drv, cmds2, 5);
-    // // st7789_put_pixels_for_window(*drv,10,20,10,20,(uint8_t *)buf);
-    // st7789_put_pixels(*drv, buf, 240*2*5);
+    // st7789_put_pixels_for_window(*drv,10,20,10,20,(uint8_t *)buf);
+    // // st7789_put_pixels(*drv, buf, 240*2*5);
     // free(buf);
+    
     (*drv)->busy = false;
     gpio_put((*drv)->bl, 1);
 }

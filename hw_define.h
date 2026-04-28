@@ -1,13 +1,13 @@
 
 /** 硬件IO定义 */
 
-#define TFT_BL 7 
-#define TFT_RST 20 //25
+#define TFT_BL 18 //7 
+#define TFT_RST 21 //25
 
-#define TFT_CS 21
+#define TFT_CS 19
 #define TFT_SCK 22
-#define TFT_MOSI 3 //23
-#define TFT_DC 19 //24
+#define TFT_MOSI 26 //23
+#define TFT_DC 20 //24
 
 #define TFT_SPI_INST spi0
 #define TFT_SPI_BAUD 40000000
@@ -25,8 +25,8 @@
 
 /** 121 * 67 */
 
-#define KEY_U 10
-#define KEY_D 11
-#define KEY_L 12
-#define KEY_R 13
-#define KEY_M 14
+#define KEY_U 13
+#define KEY_D 12
+#define KEY_L 11
+#define KEY_R 10
+#define KEY_M 9

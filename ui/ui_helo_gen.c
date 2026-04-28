@@ -148,6 +148,8 @@ void ui_helo_init_gen(const char * asset_path)
     lv_xml_register_subject(NULL, "vol", &vol);
 
     /* Register callbacks */
+    lv_xml_register_event_cb(NULL, "on_stepper_ctrl_loaded", on_stepper_ctrl_loaded);
+    lv_xml_register_event_cb(NULL, "on_stepper_ctrl_keyevent", on_stepper_ctrl_keyevent);
 #endif
 
     /* Register all the global assets so that they won't be created again when globals.xml is parsed.
@@ -166,6 +168,18 @@ void ui_helo_init_gen(const char * asset_path)
 }
 
 /* Callbacks */
+#if defined(LV_EDITOR_PREVIEW)
+void __attribute__((weak)) on_stepper_ctrl_loaded(lv_event_t * e)
+{
+    LV_UNUSED(e);
+    LV_LOG("on_stepper_ctrl_loaded was called\n");
+}
+void __attribute__((weak)) on_stepper_ctrl_keyevent(lv_event_t * e)
+{
+    LV_UNUSED(e);
+    LV_LOG("on_stepper_ctrl_keyevent was called\n");
+}
+#endif
 
 /**********************
  *   STATIC FUNCTIONS
