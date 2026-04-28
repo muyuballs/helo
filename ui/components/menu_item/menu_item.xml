@@ -1,6 +1,6 @@
 <component>
 	<previews>
-		<preview width="320" height="240" style_bg_color="0x000" />
+		<preview width="320" height="240" style_bg_color="0xfff" />
 	</previews>
 
 	<api>
@@ -11,17 +11,16 @@
 	<styles>
 		<style
 			name="style_base"
-			shadow_color="#grey"
-			shadow_width="2"
-			border_width="1"
+			border_side="none"
 			radius="3"
 			pad_all="3"
 			width="100%"
 			border_color="#darkGrey"
 			flex_main_place="space_between"
+			text_color="#black"
 		/>
-		<style name="selected" border_color="#active" />
-		<style name="style_title" text_color="#black" />
+		<style name="selected" text_color="#active" />
+		<style name="style_title" text_font="misan_14" />
 	</styles>
 
 	<view extends="row" click_focusable="true">

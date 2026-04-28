@@ -40,6 +40,14 @@
 
 	<fonts>
 		<!-- Add <bin> , <tiny_ttf>, <freetype> tags here -->
+		<bin
+			name="misan_14"
+			as_file="false"
+			bpp="4"
+			src_path="fonts/MiSans-Regular.ttf"
+			size="14"
+			symbols="关于步进电机压流旋转方向驱动类型细分数舵脉冲宽度"
+		/>
 		<bin name="font_medium_48" as_file="false" src_path="fonts/Montserrat_Medium.ttf" size="48" bpp="4" />
 		<bin name="font_medium" as_file="false" src_path="fonts/Montserrat_Medium.ttf" size="20" bpp="4" />
 	</fonts>
