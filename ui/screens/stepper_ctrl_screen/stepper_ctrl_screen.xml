@@ -19,7 +19,7 @@
 		<lv_label text="CCW" align="bottom_left">
 			<style name="comment_text" />
 		</lv_label>
-		<lv_label bind_text="vol" bind_text-fmt=".1f v" align="bottom_mid">
+		<lv_label bind_text="vol" bind_text-fmt="%.1f v" align="bottom_mid">
 			<style name="comment_text" />
 		</lv_label>
 		<lv_label bind_text="load_str" align="bottom_right">
