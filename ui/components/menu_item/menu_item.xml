@@ -16,16 +16,23 @@
 			pad_all="3"
 			width="100%"
 			border_color="#darkGrey"
-			flex_main_place="space_between"
 			text_color="#black"
+			flex_cross_place="center"
+			flex_track_place="center"
 		/>
+		<style name="arrow_visible" opa="255" />
+		<style name="arrow" opa="0" width="32" height="content" />
 		<style name="selected" text_color="#active" />
 		<style name="style_title" text_font="misan_16" />
 	</styles>
 
-	<view extends="row" clickable="true">
+	<view extends="row" clickable="true" focused="true">
 		<style name="style_base" />
 		<style name="selected" selector="focused" />
+		<lv_label text="#LV_SYMBOL_RIGHT">
+			<style name="arrow" />
+			<style name="arrow_visible" />
+		</lv_label>
 		<lv_label text="$text">
 			<style name="style_title" />
 		</lv_label>
