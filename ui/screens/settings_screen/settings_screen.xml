@@ -1,10 +1,18 @@
 <screen>
 	<styles>
 		<style name="menu" width="100%" height="100%" pad_row="4" flex_cross_place="start" flex_track_place="start" />
-		<style name="item" height="32" />
+		<style name="item" height="32" width="100%" />
 	</styles>
 	<view extends="column" scrollable="true" scrollbar_mode="auto">
 		<style name="menu" />
-		<lv_label />
+		<menu_item text="STEEPER">
+			<style name="item" />
+		</menu_item>
+		<menu_item text="Routate">
+			<style name="item" />
+		</menu_item>
+		<menu_item text="ABOUT">
+			<style name="item" />
+		</menu_item>
 	</view>
 </screen>
