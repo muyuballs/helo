@@ -223,7 +223,8 @@ void on_stepper_ctrl_keyevent(lv_event_t *e)
     {
         uint32_t key = lv_event_get_key(e);
         printf("key: %d", key);
-        
+        lv_obj_t* settings_screen = settings_screen_create();
+        lv_screen_load_anim(settings_screen,LV_SCREEN_LOAD_ANIM_MOVE_LEFT,500,0,true);
     }
     printf("\n");
 }

@@ -1,6 +1,6 @@
 <screen>
 	<styles>
-		<style name="menu" width="100%" height="100%" pad_row="4" flex_cross_place="start" flex_track_place="start" />
+		<style name="menu" pad_all="8" width="100%" height="100%" pad_row="4" flex_cross_place="start" flex_track_place="start" />
 		<style name="item" height="32" width="100%" />
 	</styles>
 	<view extends="column" scrollable="true" scrollbar_mode="auto">

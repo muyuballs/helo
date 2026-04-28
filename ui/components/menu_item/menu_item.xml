@@ -20,8 +20,8 @@
 			border_color="#darkGrey"
 			flex_main_place="space_between"
 		/>
-		<style name="selected" border_width="#active" />
-		<style name="style_title" text_color="#white" />
+		<style name="selected" border_color="#active" />
+		<style name="style_title" text_color="#black" />
 	</styles>
 
 	<view extends="row" click_focusable="true">
