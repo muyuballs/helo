@@ -61,13 +61,14 @@ lv_obj_t * settings_screen_create(void)
     lv_obj_set_scrollbar_mode(column_0, LV_SCROLLBAR_MODE_AUTO);
 
     lv_obj_add_style(column_0, &menu, 0);
-    lv_obj_t * menu_item_0 = menu_item_create(column_0, "STEEPER", true);
+    lv_obj_add_event_cb(column_0, on_screen_created, LV_EVENT_SCREEN_LOADED, NULL);
+    lv_obj_t * menu_item_0 = menu_item_create(column_0, "步进驱动配置", true);
     lv_obj_add_style(menu_item_0, &item, 0);
     
-    lv_obj_t * menu_item_1 = menu_item_create(column_0, "Routate", true);
+    lv_obj_t * menu_item_1 = menu_item_create(column_0, "舵机控制配置", true);
     lv_obj_add_style(menu_item_1, &item, 0);
     
-    lv_obj_t * menu_item_2 = menu_item_create(column_0, "ABOUT", true);
+    lv_obj_t * menu_item_2 = menu_item_create(column_0, "关于", true);
     lv_obj_add_style(menu_item_2, &item, 0);
 
     LV_TRACE_OBJ_CREATE("finished");

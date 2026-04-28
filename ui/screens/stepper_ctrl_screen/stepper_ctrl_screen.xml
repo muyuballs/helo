@@ -8,7 +8,7 @@
 	<view extends="lv_obj" width="100%" height="100%" scrollable="false" scrollbar_mode="off">
 		<remove_style />
 		<style name="style_base" />
-		<event_cb callback="on_stepper_ctrl_loaded" trigger="screen_loaded" />
+		<event_cb callback="on_screen_created" trigger="screen_loaded" />
 		<event_cb callback="on_stepper_ctrl_keyevent" trigger="key" />
 		<lv_label text="TMC220X">
 			<style name="comment_text" />

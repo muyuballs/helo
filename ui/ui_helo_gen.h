@@ -71,6 +71,8 @@ extern lv_style_t section_title;
  * Fonts
  *----------------*/
 
+extern lv_font_t * misan_16;
+
 extern lv_font_t * font_medium_48;
 
 extern lv_font_t * font_medium;
@@ -99,7 +101,7 @@ extern lv_subject_t vol;
  * Event Callbacks
  *----------------*/
 
-void on_stepper_ctrl_loaded(lv_event_t * e);
+void on_screen_created(lv_event_t * e);
 void on_stepper_ctrl_keyevent(lv_event_t * e);
 
 /**

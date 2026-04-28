@@ -27,7 +27,7 @@
                 "-u"
             ],
             "presentation": {
-                "reveal": "always",
+                "revealProblems": "onProblem",
                 "panel": "dedicated"
             },
             "problemMatcher": [],

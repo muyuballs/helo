@@ -150,7 +150,7 @@ void setup_lvgl()
 
     lv_group_t *group = lv_group_create();
     lv_group_set_default(group);
-    lv_indev_set_group(keypad,group);
+    lv_indev_set_group(keypad, group);
 
     printf("ui_hello_world_init\n");
     ui_helo_init("");
@@ -166,6 +166,11 @@ uint64_t millis = 0;
 int main()
 {
     stdio_init_all();
+    for (int i = 0; i < 5; i++)
+    {
+        printf("wait serial connect: %d\n", i);
+        sleep_ms(1000);
+    }
     adc_init();
     adc_gpio_init(29);
 
@@ -206,13 +211,15 @@ int main()
     }
 }
 
-void on_stepper_ctrl_loaded(lv_event_t *e)
+void on_screen_created(lv_event_t *e)
 {
-      printf("on_stepper_ctrl_loaded\n");
-    lv_group_t * group = lv_group_get_default();
+    lv_obj_t *target = lv_event_get_current_target_obj(e);
+    printf("on_screen_created :%s\n", lv_obj_get_name(target));
+    lv_group_t *group = lv_group_get_default();
     lv_group_remove_all_objs(group);
     // lv_obj_t* screen = lv_obj_get_child_by_name(lv_screen_active(),"stepper_ctrl_screen_#");
-    lv_group_add_obj(group,lv_screen_active());
+    lv_group_add_obj(group, lv_screen_active());
+    lv_gridnav_add(lv_screen_active(), LV_GRIDNAV_CTRL_ROLLOVER);
 }
 
 void on_stepper_ctrl_keyevent(lv_event_t *e)
@@ -223,8 +230,8 @@ void on_stepper_ctrl_keyevent(lv_event_t *e)
     {
         uint32_t key = lv_event_get_key(e);
         printf("key: %d", key);
-        lv_obj_t* settings_screen = settings_screen_create();
-        lv_screen_load_anim(settings_screen,LV_SCREEN_LOAD_ANIM_MOVE_LEFT,500,0,true);
+        lv_obj_t *settings_screen = settings_screen_create();
+        lv_screen_load_anim(settings_screen, LV_SCREEN_LOAD_ANIM_MOVE_LEFT, 500, 0, true);
     }
     printf("\n");
 }

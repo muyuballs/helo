@@ -43,6 +43,8 @@
  * Fonts
  *----------------*/
 
+lv_font_t * misan_16;
+extern lv_font_t misan_16_data;
 lv_font_t * font_medium_48;
 extern lv_font_t font_medium_48_data;
 lv_font_t * font_medium;
@@ -87,6 +89,8 @@ void ui_helo_init_gen(const char * asset_path)
      * Fonts
      *----------------*/
 
+    /* get font 'misan_16' from a C array */
+    misan_16 = &misan_16_data;
     /* get font 'font_medium_48' from a C array */
     font_medium_48 = &font_medium_48_data;
     /* get font 'font_medium' from a C array */
@@ -135,6 +139,7 @@ void ui_helo_init_gen(const char * asset_path)
     /* Register widgets */
 
     /* Register fonts */
+    lv_xml_register_font(NULL, "misan_16", misan_16);
     lv_xml_register_font(NULL, "font_medium_48", font_medium_48);
     lv_xml_register_font(NULL, "font_medium", font_medium);
 
@@ -148,7 +153,7 @@ void ui_helo_init_gen(const char * asset_path)
     lv_xml_register_subject(NULL, "vol", &vol);
 
     /* Register callbacks */
-    lv_xml_register_event_cb(NULL, "on_stepper_ctrl_loaded", on_stepper_ctrl_loaded);
+    lv_xml_register_event_cb(NULL, "on_screen_created", on_screen_created);
     lv_xml_register_event_cb(NULL, "on_stepper_ctrl_keyevent", on_stepper_ctrl_keyevent);
 #endif
 
@@ -169,10 +174,10 @@ void ui_helo_init_gen(const char * asset_path)
 
 /* Callbacks */
 #if defined(LV_EDITOR_PREVIEW)
-void __attribute__((weak)) on_stepper_ctrl_loaded(lv_event_t * e)
+void __attribute__((weak)) on_screen_created(lv_event_t * e)
 {
     LV_UNUSED(e);
-    LV_LOG("on_stepper_ctrl_loaded was called\n");
+    LV_LOG("on_screen_created was called\n");
 }
 void __attribute__((weak)) on_stepper_ctrl_keyevent(lv_event_t * e)
 {

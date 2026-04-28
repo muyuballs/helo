@@ -20,10 +20,10 @@
 			text_color="#black"
 		/>
 		<style name="selected" text_color="#active" />
-		<style name="style_title" text_font="misan_14" />
+		<style name="style_title" text_font="misan_16" />
 	</styles>
 
-	<view extends="row" click_focusable="true">
+	<view extends="row" clickable="true">
 		<style name="style_base" />
 		<style name="selected" selector="focused" />
 		<lv_label text="$text">
