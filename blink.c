@@ -8,6 +8,7 @@
 #include "pico/stdlib.h"
 #include "lvgl.h"
 #include "pico/time.h"
+#include "hardware/clocks.h"
 #include "hardware/spi.h"
 #include "hardware/adc.h"
 #include "hw_define.h"
@@ -174,12 +175,14 @@ uint64_t millis = 0;
 
 int main()
 {
+    set_sys_clock_khz(250000, false);
     stdio_init_all();
     for (int i = 0; i < 5; i++)
     {
         printf("wait serial connect: %d\n", i);
         sleep_ms(1000);
     }
+    printf("sys clock %ld hz\n",clock_get_hz(clk_sys));
     adc_init();
     adc_gpio_init(29);
 
@@ -203,7 +206,7 @@ int main()
             millis = lmillis;
             tick = 0;
         }
-        lv_subject_set_float(&vol, get_vsys_voltage());
+        // lv_subject_set_float(&vol, get_vsys_voltage());
 
         led_status = !led_status;
         pico_set_led(led_status);

@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define SERIAL_CLK_DIV 1.f
+#define SERIAL_CLK_DIV 3.f
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
