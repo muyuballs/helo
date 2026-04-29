@@ -1,28 +1,40 @@
 <screen>
 	<styles>
+		<style name="main_style" width="100%" height="100%" bg_image_src="main_bg" />
 		<style
-			name="menu"
-			pad_all="8"
+			flex_main_place="center"
+			pad_column="4"
+			flex_cross_place="center"
+			flex_track_place="center"
+			name="title_bar"
+			text_color="#white"
+			text_font="misan_16"
+			bg_opa="255"
+			bg_color="0x11161b"
+			height="36"
 			width="100%"
-			height="100%"
-			pad_row="4"
-			flex_cross_place="start"
-			flex_track_place="start"
-			bg_image_src="main_bg"
 		/>
-		<style name="item" height="60" width="100%" />
+		<style name="items" pad_row="8" flex_grow="1" width="100%" />
+		<style name="item" height="69" width="100%" />
 	</styles>
-	<view extends="column" scrollable="true" scrollbar_mode="auto">
-		<style name="menu" />
+	<view extends="column" scrollable="false">
+		<style name="main_style" />
 		<event_cb callback="on_screen_created" trigger="screen_loaded" />
-		<menu_item text="步进驱动配置" icon="ic_stepper_30">
-			<style name="item" />
-		</menu_item>
-		<menu_item text="舵机控制配置" icon="ic_motor_30">
-			<style name="item" />
-		</menu_item>
-		<menu_item text="关于" icon="ic_info_30">
-			<style name="item" />
-		</menu_item>
+		<row>
+			<style name="title_bar" />
+			<lv_label text="设置" />
+		</row>
+		<column name="menu" scrollable="true" scrollbar_mode="auto">
+			<style name="items" />
+			<menu_item text="步进驱动配置" icon="ic_stepper_30">
+				<style name="item" />
+			</menu_item>
+			<menu_item text="舵机控制配置" icon="ic_motor_30">
+				<style name="item" />
+			</menu_item>
+			<menu_item text="关于" icon="ic_info_30">
+				<style name="item" />
+			</menu_item>
+		</column>
 	</view>
 </screen>

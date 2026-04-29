@@ -15,7 +15,8 @@
 			border_color="#active"
 			border_side="none"
 			radius="3"
-			pad_all="16"
+			pad_left="16"
+			pad_right="6"
 			width="100%"
 			height="69"
 			bg_image_src="mitem_bg"
@@ -23,11 +24,18 @@
 			flex_track_place="center"
 		/>
 		<style name="selected" border_side="full" />
-		<style name="title_style" flex_grow="1" text_font="misan_16" margin_hor="12" />
+		<style
+			name="title_style"
+			text_color="#white"
+			flex_grow="1"
+			text_font="misan_22"
+			pad_hor="12"
+			text_align="left"
+		/>
 		<style name="icon_style" width="30" height="30" />
 	</styles>
 
-	<view extends="row" clickable="true">
+	<view extends="row" clickable="true" scrollable="false">
 		<style name="style_base" />
 		<style name="selected" selector="focused" />
 		<event_cb trigger="focused" callback="on_menu_item_focus_changed" />

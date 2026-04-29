@@ -36,8 +36,8 @@
 
 	<images>
 		<!-- Add <file> or <data> tags here -->
-		<data  name="main_bg"  color_format="rgb565" src_path="images/main_bg.png"/>
-		<data  name="mitem_bg"  color_format="rgb565a8" src_path="images/mitem_bg.png"/>
+		<data name="main_bg" color_format="rgb565" src_path="images/main_bg.png" />
+		<data name="mitem_bg" color_format="rgb565a8" src_path="images/mitem_bg.png" />
 		<data name="ic_info_30" color_format="rgb565a8" src_path="images/ic_info_30.png" />
 		<data name="ic_more_24" color_format="rgb565a8" src_path="images/ic_more_24.png" />
 		<data name="ic_motor_30" color_format="rgb565a8" src_path="images/ic_motor_30.png" />
@@ -53,6 +53,14 @@
 			bpp="4"
 			src_path="fonts/MiSans-Regular.ttf"
 			size="16"
+			symbols="关于步进电机压流旋转方向驱动类型细分数舵脉冲宽度控制配置"
+		/>
+		<bin
+			name="misan_22"
+			as_file="false"
+			bpp="8"
+			src_path="fonts/MiSans-Regular.ttf"
+			size="22"
 			symbols="关于步进电机压流旋转方向驱动类型细分数舵脉冲宽度控制配置"
 		/>
 		<bin name="font_medium_48" as_file="false" src_path="fonts/Montserrat_Medium.ttf" size="48" bpp="4" />
