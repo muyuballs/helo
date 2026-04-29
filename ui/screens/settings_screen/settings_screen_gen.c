@@ -47,9 +47,10 @@ lv_obj_t * settings_screen_create(void)
         lv_style_set_pad_row(&menu, 4);
         lv_style_set_flex_cross_place(&menu, LV_FLEX_ALIGN_START);
         lv_style_set_flex_track_place(&menu, LV_FLEX_ALIGN_START);
+        lv_style_set_bg_image_src(&menu, main_bg);
 
         lv_style_init(&item);
-        lv_style_set_height(&item, 32);
+        lv_style_set_height(&item, 60);
         lv_style_set_width(&item, lv_pct(100));
 
         style_inited = true;
@@ -62,13 +63,13 @@ lv_obj_t * settings_screen_create(void)
 
     lv_obj_add_style(column_0, &menu, 0);
     lv_obj_add_event_cb(column_0, on_screen_created, LV_EVENT_SCREEN_LOADED, NULL);
-    lv_obj_t * menu_item_0 = menu_item_create(column_0, "步进驱动配置", true);
+    lv_obj_t * menu_item_0 = menu_item_create(column_0, "步进驱动配置", ic_stepper_30);
     lv_obj_add_style(menu_item_0, &item, 0);
     
-    lv_obj_t * menu_item_1 = menu_item_create(column_0, "舵机控制配置", true);
+    lv_obj_t * menu_item_1 = menu_item_create(column_0, "舵机控制配置", ic_motor_30);
     lv_obj_add_style(menu_item_1, &item, 0);
     
-    lv_obj_t * menu_item_2 = menu_item_create(column_0, "关于", true);
+    lv_obj_t * menu_item_2 = menu_item_create(column_0, "关于", ic_info_30);
     lv_obj_add_style(menu_item_2, &item, 0);
 
     LV_TRACE_OBJ_CREATE("finished");

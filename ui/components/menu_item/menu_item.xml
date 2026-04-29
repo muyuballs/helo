@@ -1,40 +1,42 @@
 <component>
 	<previews>
-		<preview width="320" height="240" style_bg_color="0xfff" />
+		<preview width="224" height="69" style_bg_color="0xff0000" />
 	</previews>
 
 	<api>
 		<prop name="text" type="string" default="menu item" />
-		<prop name="has_sub" type="bool" default="true" />
+		<prop name="icon" type="image" default="ic_info_30" />
 	</api>
 
 	<styles>
 		<style
 			name="style_base"
+			border_width="2"
+			border_color="#active"
 			border_side="none"
 			radius="3"
-			pad_all="3"
+			pad_all="16"
 			width="100%"
-			border_color="#darkGrey"
-			text_color="#black"
+			height="69"
+			bg_image_src="mitem_bg"
 			flex_cross_place="center"
 			flex_track_place="center"
 		/>
-		<style name="dot" opa="0" margin_right="8" bg_opa="255" bg_color="#active" radius="12" width="12" height="12" />
-		<style name="selected" text_color="#active" />
-		<style name="style_title" text_font="misan_16" />
+		<style name="selected" border_side="full" />
+		<style name="title_style" flex_grow="1" text_font="misan_16" margin_hor="12" />
+		<style name="icon_style" width="30" height="30" />
 	</styles>
 
 	<view extends="row" clickable="true">
 		<style name="style_base" />
 		<style name="selected" selector="focused" />
 		<event_cb trigger="focused" callback="on_menu_item_focus_changed" />
-		<lv_obj name="prefix">
-			<remove_style />
-			<style name="dot" />
-		</lv_obj>
+		<lv_image src="$icon">
+			<style name="icon_style" />
+		</lv_image>
 		<lv_label text="$text">
-			<style name="style_title" />
+			<style name="title_style" />
 		</lv_label>
+		<lv_image src="ic_more_24" />
 	</view>
 </component>

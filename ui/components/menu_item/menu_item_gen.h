@@ -33,7 +33,7 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
-lv_obj_t * menu_item_create(lv_obj_t * parent, const char * text, bool has_sub);
+lv_obj_t * menu_item_create(lv_obj_t * parent, const char * text, const void * icon);
 
 /**********************
  *      MACROS
