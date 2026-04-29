@@ -20,19 +20,19 @@
 			flex_cross_place="center"
 			flex_track_place="center"
 		/>
-		<style name="arrow_visible" opa="255" />
-		<style name="arrow" opa="0" width="32" height="content" />
+		<style name="dot" opa="0" margin_right="8" bg_opa="255" bg_color="#active" radius="12" width="12" height="12" />
 		<style name="selected" text_color="#active" />
 		<style name="style_title" text_font="misan_16" />
 	</styles>
 
-	<view extends="row" clickable="true" focused="true">
+	<view extends="row" clickable="true">
 		<style name="style_base" />
 		<style name="selected" selector="focused" />
-		<lv_label text="#LV_SYMBOL_RIGHT">
-			<style name="arrow" />
-			<style name="arrow_visible" />
-		</lv_label>
+		<event_cb trigger="focused" callback="on_menu_item_focus_changed" />
+		<lv_obj name="prefix">
+			<remove_style />
+			<style name="dot" />
+		</lv_obj>
 		<lv_label text="$text">
 			<style name="style_title" />
 		</lv_label>
