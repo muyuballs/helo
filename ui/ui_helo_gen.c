@@ -54,6 +54,21 @@ extern lv_font_t font_medium_data;
  * Images
  *----------------*/
 
+const void * main_bg;
+extern const void * main_bg_data;
+const void * mitem_bg;
+extern const void * mitem_bg_data;
+const void * ic_info_30;
+extern const void * ic_info_30_data;
+const void * ic_more_24;
+extern const void * ic_more_24_data;
+const void * ic_motor_30;
+extern const void * ic_motor_30_data;
+const void * ic_setting_20;
+extern const void * ic_setting_20_data;
+const void * ic_stepper_30;
+extern const void * ic_stepper_30_data;
+
 /*----------------
  * Global styles
  *----------------*/
@@ -100,6 +115,14 @@ void ui_helo_init_gen(const char * asset_path)
     /*----------------
      * Images
      *----------------*/
+    main_bg = &main_bg_data;
+    mitem_bg = &mitem_bg_data;
+    ic_info_30 = &ic_info_30_data;
+    ic_more_24 = &ic_more_24_data;
+    ic_motor_30 = &ic_motor_30_data;
+    ic_setting_20 = &ic_setting_20_data;
+    ic_stepper_30 = &ic_stepper_30_data;
+
     /*----------------
      * Global styles
      *----------------*/
@@ -153,6 +176,7 @@ void ui_helo_init_gen(const char * asset_path)
     lv_xml_register_subject(NULL, "vol", &vol);
 
     /* Register callbacks */
+    lv_xml_register_event_cb(NULL, "on_menu_item_focus_changed", on_menu_item_focus_changed);
     lv_xml_register_event_cb(NULL, "on_screen_created", on_screen_created);
     lv_xml_register_event_cb(NULL, "on_stepper_ctrl_keyevent", on_stepper_ctrl_keyevent);
 #endif
@@ -161,6 +185,13 @@ void ui_helo_init_gen(const char * asset_path)
      * While running in the editor skip this step to update the preview when the XML changes */
 #if LV_USE_XML && !defined(LV_EDITOR_PREVIEW)
     /* Register images */
+    lv_xml_register_image(NULL, "main_bg", main_bg);
+    lv_xml_register_image(NULL, "mitem_bg", mitem_bg);
+    lv_xml_register_image(NULL, "ic_info_30", ic_info_30);
+    lv_xml_register_image(NULL, "ic_more_24", ic_more_24);
+    lv_xml_register_image(NULL, "ic_motor_30", ic_motor_30);
+    lv_xml_register_image(NULL, "ic_setting_20", ic_setting_20);
+    lv_xml_register_image(NULL, "ic_stepper_30", ic_stepper_30);
 #endif
 
 #if LV_USE_XML == 0
@@ -174,6 +205,11 @@ void ui_helo_init_gen(const char * asset_path)
 
 /* Callbacks */
 #if defined(LV_EDITOR_PREVIEW)
+void __attribute__((weak)) on_menu_item_focus_changed(lv_event_t * e)
+{
+    LV_UNUSED(e);
+    LV_LOG("on_menu_item_focus_changed was called\n");
+}
 void __attribute__((weak)) on_screen_created(lv_event_t * e)
 {
     LV_UNUSED(e);

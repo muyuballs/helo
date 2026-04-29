@@ -36,6 +36,13 @@
 
 	<images>
 		<!-- Add <file> or <data> tags here -->
+		<data  name="main_bg"  color_format="rgb565" src_path="images/main_bg.png"/>
+		<data  name="mitem_bg"  color_format="rgb565a8" src_path="images/mitem_bg.png"/>
+		<data name="ic_info_30" color_format="rgb565a8" src_path="images/ic_info_30.png" />
+		<data name="ic_more_24" color_format="rgb565a8" src_path="images/ic_more_24.png" />
+		<data name="ic_motor_30" color_format="rgb565a8" src_path="images/ic_motor_30.png" />
+		<data name="ic_setting_20" color_format="rgb565a8" src_path="images/ic_setting_20.png" />
+		<data name="ic_stepper_30" color_format="rgb565a8" src_path="images/ic_stepper_30.png" />
 	</images>
 
 	<fonts>

@@ -12,6 +12,13 @@ list(
   ${CMAKE_CURRENT_LIST_DIR}/fonts/font_medium_48_data.c
   ${CMAKE_CURRENT_LIST_DIR}/fonts/font_medium_data.c
   ${CMAKE_CURRENT_LIST_DIR}/fonts/misan_16_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/ic_info_30_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/ic_more_24_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/ic_motor_30_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/ic_setting_20_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/ic_stepper_30_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/main_bg_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/mitem_bg_data.c
   ${CMAKE_CURRENT_LIST_DIR}/screens/screen_hello_world_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/screens/settings_screen/settings_screen_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/screens/stepper_ctrl_screen/stepper_ctrl_screen_gen.c

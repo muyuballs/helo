@@ -29,6 +29,9 @@ static st7789_drv_t *disp_drv;
 
 static struct repeating_timer lvgl_tick_timer;
 
+static volatile bool has_keypad_event = false;
+static lv_indev_t *keypad;
+
 static inline uint64_t millis_since_boot()
 {
     return to_ms_since_boot(get_absolute_time());
@@ -84,6 +87,11 @@ void st7789_flush_impl(lv_display_t *disp, const lv_area_t *area, uint8_t *px_ma
     lv_display_flush_ready(disp);
 }
 
+void keypan_irq_handler()
+{
+    has_keypad_event = true;
+}
+
 void setup_keypad()
 {
     uint keys[5] = {KEY_U, KEY_D, KEY_L, KEY_R, KEY_M};
@@ -92,6 +100,7 @@ void setup_keypad()
         gpio_init(keys[i]);
         gpio_set_dir(keys[i], false);
         gpio_set_pulls(keys[i], true, false);
+        gpio_set_irq_enabled_with_callback(keys[i], GPIO_IRQ_EDGE_FALL, true, keypan_irq_handler);
     }
 }
 
@@ -142,8 +151,8 @@ void setup_lvgl()
     printf("lv_display_set_buffers\n");
     lv_display_set_buffers(disp, lv_buffer, NULL, LV_BUF_SIZE, LV_DISPLAY_RENDER_MODE_PARTIAL);
 
-    lv_indev_t *keypad = lv_indev_create();
-    lv_indev_set_mode(keypad, LV_INDEV_MODE_TIMER);
+    keypad = lv_indev_create();
+    lv_indev_set_mode(keypad, LV_INDEV_MODE_EVENT);
     lv_indev_set_type(keypad, LV_INDEV_TYPE_ENCODER);
     lv_indev_set_read_cb(keypad, keypad_read_impl);
     lv_indev_set_display(keypad, disp);
@@ -199,6 +208,12 @@ int main()
         led_status = !led_status;
         pico_set_led(led_status);
         uint32_t delay = lv_timer_handler();
+        if (has_keypad_event)
+        {
+            has_keypad_event = false;
+            lv_indev_read(keypad);
+            continue;
+        }
         // printf("delay = %ld ms\n", delay);
         if (delay == LV_NO_TIMER_READY)
         {
@@ -234,4 +249,16 @@ void on_stepper_ctrl_keyevent(lv_event_t *e)
         lv_screen_load_anim(settings_screen, LV_SCREEN_LOAD_ANIM_MOVE_LEFT, 500, 0, true);
     }
     printf("\n");
+}
+
+void on_menu_item_focus_changed(lv_event_t *e)
+{
+    lv_obj_t *target = lv_event_get_target_obj(e);
+    lv_obj_t *prefix = lv_obj_find_by_name(target, "prefix");
+    if (prefix)
+    {
+        lv_obj_set_style_opa(prefix, 255, LV_PART_MAIN);
+    }
+    lv_obj_t *fobj = lv_group_get_focused(lv_group_get_default());
+    printf("on_menu_item_focus_changed :%s %p --- %d\n", lv_obj_get_name(target), fobj, target == fobj);
 }

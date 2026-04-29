@@ -81,6 +81,14 @@ extern lv_font_t * font_medium;
  * Images
  *----------------*/
 
+extern const void * main_bg;
+extern const void * mitem_bg;
+extern const void * ic_info_30;
+extern const void * ic_more_24;
+extern const void * ic_motor_30;
+extern const void * ic_setting_20;
+extern const void * ic_stepper_30;
+
 /*----------------
  * Subjects
  *----------------*/
@@ -101,6 +109,7 @@ extern lv_subject_t vol;
  * Event Callbacks
  *----------------*/
 
+void on_menu_item_focus_changed(lv_event_t * e);
 void on_screen_created(lv_event_t * e);
 void on_stepper_ctrl_keyevent(lv_event_t * e);
 
