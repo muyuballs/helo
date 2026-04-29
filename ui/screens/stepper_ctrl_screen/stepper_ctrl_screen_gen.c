@@ -43,6 +43,7 @@ lv_obj_t * stepper_ctrl_screen_create(void)
 
     if (!style_inited) {
         lv_style_init(&style_base);
+        lv_style_set_bg_image_src(&style_base, main_bg);
         lv_style_set_pad_all(&style_base, 4);
         lv_style_set_layout(&style_base, LV_LAYOUT_NONE);
         lv_style_set_height(&style_base, lv_pct(100));
@@ -74,7 +75,7 @@ lv_obj_t * stepper_ctrl_screen_create(void)
 
     lv_obj_remove_style(lv_obj_0, NULL, 0);
     lv_obj_add_style(lv_obj_0, &style_base, 0);
-    lv_obj_add_event_cb(lv_obj_0, on_screen_created, LV_EVENT_SCREEN_LOADED, NULL);
+    lv_obj_add_event_cb(lv_obj_0, on_screen_loaded, LV_EVENT_SCREEN_LOADED, NULL);
     lv_obj_add_event_cb(lv_obj_0, on_stepper_ctrl_keyevent, LV_EVENT_KEY, NULL);
     lv_obj_t * lv_label_0 = lv_label_create(lv_obj_0);
     lv_label_set_text(lv_label_0, "TMC220X");

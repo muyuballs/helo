@@ -226,15 +226,24 @@ int main()
     }
 }
 
-void on_screen_created(lv_event_t *e)
+void on_screen_loaded(lv_event_t *e)
 {
     lv_obj_t *target = lv_event_get_current_target_obj(e);
-    printf("on_screen_created :%s\n", lv_obj_get_name(target));
+    printf("on_screen_loaded :%s\n", lv_obj_get_name(target));
     lv_group_t *group = lv_group_get_default();
     lv_group_remove_all_objs(group);
     // lv_obj_t* screen = lv_obj_get_child_by_name(lv_screen_active(),"stepper_ctrl_screen_#");
-    lv_group_add_obj(group, lv_screen_active());
-    lv_gridnav_add(lv_screen_active(), LV_GRIDNAV_CTRL_ROLLOVER);
+    if (lv_strcmp("settings_screen_#", lv_obj_get_name(target)) == 0)
+    {
+        lv_obj_t *menu = lv_obj_find_by_name(target, "menu");
+        lv_group_add_obj(group, menu);
+        lv_gridnav_add(menu, LV_GRIDNAV_CTRL_ROLLOVER);
+    }
+    else
+    {
+        lv_group_add_obj(group, lv_screen_active());
+        lv_gridnav_add(lv_screen_active(), LV_GRIDNAV_CTRL_ROLLOVER);
+    }
 }
 
 void on_stepper_ctrl_keyevent(lv_event_t *e)
@@ -261,4 +270,27 @@ void on_menu_item_focus_changed(lv_event_t *e)
     }
     lv_obj_t *fobj = lv_group_get_focused(lv_group_get_default());
     printf("on_menu_item_focus_changed :%s %p --- %d\n", lv_obj_get_name(target), fobj, target == fobj);
+}
+
+void on_menu_screen_keyevent(lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    printf("event code:%d ", code);
+    if (code == LV_EVENT_KEY)
+    {
+        uint32_t key = lv_event_get_key(e);
+        printf("key: %d", key);
+        if (key == LV_KEY_ESC)
+        {
+            lv_obj_t *stepper_ctrl_screen = stepper_ctrl_screen_create();
+            lv_screen_load_anim(stepper_ctrl_screen, LV_SCREEN_LOAD_ANIM_MOVE_RIGHT, 500, 0, true);
+        }
+    }
+    printf("\n");
+}
+
+void on_menu_item_clicked(lv_event_t *e)
+{
+    void *which = lv_event_get_user_data(e);
+    printf("on_menu_item_clicked:%s\n", which);
 }

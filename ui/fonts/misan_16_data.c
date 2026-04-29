@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Size: 16 px
  * Bpp: 4
- * Opts: --font /fonts/MiSans-Regular.ttf -o /fonts/misan_16_data.c --size 16 --bpp 4 --format lvgl --no-compress --symbols 关于步进电机压流旋转方向驱动类型细分数舵脉冲宽度控制配置 --range 0x20-0x7F
+ * Opts: --font /fonts/MiSans-Regular.ttf -o /fonts/misan_16_data.c --size 16 --bpp 4 --format lvgl --no-compress --symbols 设关于步进电机压流旋转方向驱动类型细分数舵脉冲宽度控制配置 --range 0x20-0x7F
  ******************************************************************************/
 
 #ifdef __has_include
@@ -1223,6 +1223,23 @@ static LV_ATTRIBUTE_LARGE_CONST const uint8_t glyph_bitmap[] = {
     0xf2, 0x0e, 0x28, 0xff, 0x70, 0x0a, 0xee, 0xe9,
     0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 
+    /* U+8BBE "设" */
+    0x03, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0xcb, 0x00, 0x0a, 0xff, 0xff, 0xf0, 0x00, 0x02,
+    0xf8, 0x00, 0xb9, 0x22, 0x4f, 0x10, 0x00, 0x05,
+    0xe1, 0x0d, 0x70, 0x03, 0xf1, 0x00, 0x00, 0x01,
+    0x04, 0xf2, 0x00, 0x2f, 0x53, 0x03, 0x32, 0x03,
+    0xe8, 0x00, 0x00, 0xce, 0xf1, 0xcd, 0xe0, 0x15,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x4e, 0x00, 0x8f,
+    0xff, 0xff, 0xfe, 0x00, 0x04, 0xe0, 0x05, 0xf3,
+    0x22, 0x2b, 0xb0, 0x00, 0x4e, 0x00, 0x0c, 0x90,
+    0x03, 0xf2, 0x00, 0x04, 0xe0, 0x30, 0x2e, 0x72,
+    0xe8, 0x00, 0x00, 0x4e, 0x6f, 0x30, 0x3f, 0xea,
+    0x00, 0x00, 0x04, 0xff, 0x50, 0x1a, 0xfe, 0xd4,
+    0x00, 0x00, 0x8d, 0x24, 0xaf, 0xc3, 0x07, 0xfc,
+    0x60, 0x00, 0x10, 0xdb, 0x40, 0x00, 0x01, 0x8e,
+    0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+
     /* U+8F6C "转" */
     0x00, 0x02, 0x40, 0x00, 0x00, 0x50, 0x00, 0x00,
     0x00, 0x9a, 0x00, 0x00, 0x3f, 0x00, 0x00, 0x02,
@@ -1417,10 +1434,11 @@ static const lv_font_fmt_txt_glyph_dsc_t glyph_dsc[] = {
     {.bitmap_index = 6836, .adv_w = 256, .box_w = 16, .box_h = 14, .ofs_x = 0, .ofs_y = -1},
     {.bitmap_index = 6948, .adv_w = 256, .box_w = 16, .box_h = 16, .ofs_x = 0, .ofs_y = -2},
     {.bitmap_index = 7076, .adv_w = 256, .box_w = 15, .box_h = 16, .ofs_x = 0, .ofs_y = -2},
-    {.bitmap_index = 7196, .adv_w = 256, .box_w = 15, .box_h = 16, .ofs_x = 0, .ofs_y = -2},
-    {.bitmap_index = 7316, .adv_w = 256, .box_w = 16, .box_h = 16, .ofs_x = 0, .ofs_y = -2},
-    {.bitmap_index = 7444, .adv_w = 256, .box_w = 15, .box_h = 14, .ofs_x = 0, .ofs_y = -1},
-    {.bitmap_index = 7549, .adv_w = 256, .box_w = 15, .box_h = 14, .ofs_x = 0, .ofs_y = -1}
+    {.bitmap_index = 7196, .adv_w = 256, .box_w = 15, .box_h = 16, .ofs_x = 1, .ofs_y = -2},
+    {.bitmap_index = 7316, .adv_w = 256, .box_w = 15, .box_h = 16, .ofs_x = 0, .ofs_y = -2},
+    {.bitmap_index = 7436, .adv_w = 256, .box_w = 16, .box_h = 16, .ofs_x = 0, .ofs_y = -2},
+    {.bitmap_index = 7564, .adv_w = 256, .box_w = 15, .box_h = 14, .ofs_x = 0, .ofs_y = -1},
+    {.bitmap_index = 7669, .adv_w = 256, .box_w = 15, .box_h = 14, .ofs_x = 0, .ofs_y = -1}
 };
 
 /*---------------------
@@ -1431,7 +1449,7 @@ static const uint16_t unicode_list_1[] = {
     0x00, 0x2e5, 0x324, 0x378, 0x3a8, 0x41a, 0x4fd, 0x583,
     0x8fd, 0xd2f, 0x1018, 0x1519, 0x16e2, 0x172b, 0x173d, 0x18ac,
     0x1cd7, 0x1eb3, 0x26a7, 0x2ded, 0x3038, 0x30e0, 0x327b, 0x33a7,
-    0x40de, 0x414d, 0x42bf, 0x4be3
+    0x3d30, 0x40de, 0x414d, 0x42bf, 0x4be3
 };
 
 /*Collect the unicode lists and glyph_id offsets*/
@@ -1443,7 +1461,7 @@ static const lv_font_fmt_txt_cmap_t cmaps[] =
     },
     {
         .range_start = 20110, .range_length = 19428, .glyph_id_start = 97,
-        .unicode_list = unicode_list_1, .glyph_id_ofs_list = NULL, .list_length = 28, .type = LV_FONT_FMT_TXT_CMAP_SPARSE_TINY
+        .unicode_list = unicode_list_1, .glyph_id_ofs_list = NULL, .list_length = 29, .type = LV_FONT_FMT_TXT_CMAP_SPARSE_TINY
     }
 };
 
@@ -1469,7 +1487,7 @@ static const uint8_t kern_left_class_mapping[] =
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0
+    0, 0, 0, 0, 0, 0
 };
 
 /*Map glyph_ids to kern right classes*/
@@ -1490,7 +1508,7 @@ static const uint8_t kern_right_class_mapping[] =
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0
+    0, 0, 0, 0, 0, 0
 };
 
 /*Kern values between classes*/

@@ -45,6 +45,8 @@
 
 lv_font_t * misan_16;
 extern lv_font_t misan_16_data;
+lv_font_t * misan_22;
+extern lv_font_t misan_22_data;
 lv_font_t * font_medium_48;
 extern lv_font_t font_medium_48_data;
 lv_font_t * font_medium;
@@ -106,6 +108,8 @@ void ui_helo_init_gen(const char * asset_path)
 
     /* get font 'misan_16' from a C array */
     misan_16 = &misan_16_data;
+    /* get font 'misan_22' from a C array */
+    misan_22 = &misan_22_data;
     /* get font 'font_medium_48' from a C array */
     font_medium_48 = &font_medium_48_data;
     /* get font 'font_medium' from a C array */
@@ -163,6 +167,7 @@ void ui_helo_init_gen(const char * asset_path)
 
     /* Register fonts */
     lv_xml_register_font(NULL, "misan_16", misan_16);
+    lv_xml_register_font(NULL, "misan_22", misan_22);
     lv_xml_register_font(NULL, "font_medium_48", font_medium_48);
     lv_xml_register_font(NULL, "font_medium", font_medium);
 
@@ -177,7 +182,9 @@ void ui_helo_init_gen(const char * asset_path)
 
     /* Register callbacks */
     lv_xml_register_event_cb(NULL, "on_menu_item_focus_changed", on_menu_item_focus_changed);
-    lv_xml_register_event_cb(NULL, "on_screen_created", on_screen_created);
+    lv_xml_register_event_cb(NULL, "on_screen_loaded", on_screen_loaded);
+    lv_xml_register_event_cb(NULL, "on_menu_screen_keyevent", on_menu_screen_keyevent);
+    lv_xml_register_event_cb(NULL, "on_menu_item_clicked", on_menu_item_clicked);
     lv_xml_register_event_cb(NULL, "on_stepper_ctrl_keyevent", on_stepper_ctrl_keyevent);
 #endif
 
@@ -210,10 +217,20 @@ void __attribute__((weak)) on_menu_item_focus_changed(lv_event_t * e)
     LV_UNUSED(e);
     LV_LOG("on_menu_item_focus_changed was called\n");
 }
-void __attribute__((weak)) on_screen_created(lv_event_t * e)
+void __attribute__((weak)) on_screen_loaded(lv_event_t * e)
 {
     LV_UNUSED(e);
-    LV_LOG("on_screen_created was called\n");
+    LV_LOG("on_screen_loaded was called\n");
+}
+void __attribute__((weak)) on_menu_screen_keyevent(lv_event_t * e)
+{
+    LV_UNUSED(e);
+    LV_LOG("on_menu_screen_keyevent was called\n");
+}
+void __attribute__((weak)) on_menu_item_clicked(lv_event_t * e)
+{
+    LV_UNUSED(e);
+    LV_LOG("on_menu_item_clicked was called\n");
 }
 void __attribute__((weak)) on_stepper_ctrl_keyevent(lv_event_t * e)
 {

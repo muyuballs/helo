@@ -14,26 +14,30 @@
 			height="36"
 			width="100%"
 		/>
-		<style name="items" pad_row="8" flex_grow="1" width="100%" />
+		<style name="items" pad_hor="8" pad_row="8" flex_grow="1" width="100%" />
 		<style name="item" height="69" width="100%" />
 	</styles>
 	<view extends="column" scrollable="false">
 		<style name="main_style" />
-		<event_cb callback="on_screen_created" trigger="screen_loaded" />
+		<event_cb callback="on_screen_loaded" trigger="screen_loaded" />
+		<event_cb callback="on_menu_screen_keyevent" trigger="key" />
 		<row>
 			<style name="title_bar" />
 			<lv_label text="设置" />
 		</row>
-		<column name="menu" scrollable="true" scrollbar_mode="auto">
+		<column name="menu" event_bubble="true"  scrollable="true" scrollbar_mode="off">
 			<style name="items" />
 			<menu_item text="步进驱动配置" icon="ic_stepper_30">
 				<style name="item" />
+				<event_cb trigger="clicked" callback="on_menu_item_clicked" user_data="0" />
 			</menu_item>
 			<menu_item text="舵机控制配置" icon="ic_motor_30">
 				<style name="item" />
+				<event_cb trigger="clicked" callback="on_menu_item_clicked" user_data="1" />
 			</menu_item>
 			<menu_item text="关于" icon="ic_info_30">
 				<style name="item" />
+				<event_cb trigger="clicked" callback="on_menu_item_clicked" user_data="2" />
 			</menu_item>
 		</column>
 	</view>

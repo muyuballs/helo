@@ -12,6 +12,7 @@ list(
   ${CMAKE_CURRENT_LIST_DIR}/fonts/font_medium_48_data.c
   ${CMAKE_CURRENT_LIST_DIR}/fonts/font_medium_data.c
   ${CMAKE_CURRENT_LIST_DIR}/fonts/misan_16_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/misan_22_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/ic_info_30_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/ic_more_24_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/ic_motor_30_data.c

@@ -53,7 +53,7 @@
 			bpp="4"
 			src_path="fonts/MiSans-Regular.ttf"
 			size="16"
-			symbols="关于步进电机压流旋转方向驱动类型细分数舵脉冲宽度控制配置"
+			symbols="设关于步进电机压流旋转方向驱动类型细分数舵脉冲宽度控制配置"
 		/>
 		<bin
 			name="misan_22"
