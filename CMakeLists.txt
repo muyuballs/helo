@@ -62,6 +62,7 @@ target_link_libraries(blink
     hardware_gpio
     hardware_spi
     hardware_pio
+    hardware_dma
     hardware_adc
     hardware_interp
     lvgl

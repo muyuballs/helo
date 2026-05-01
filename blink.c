@@ -15,23 +15,14 @@
 #include "st7789_drv/st7789_drv.h"
 #include "ui_helo.h"
 
-#ifndef LED_DELAY_MS
-#define LED_DELAY_MS 250
-#endif
-
-#define TFT_SELECT   // gpio_put(TFT_CS, 0)
-#define TFT_UNSELECT // gpio_put(TFT_CS, 1)
-#define TFT_CMD gpio_put(TFT_DC, 0)
-#define TFT_DATA gpio_put(TFT_DC, 1)
 
 uint8_t lv_buffer[LV_BUF_SIZE] __attribute__((aligned(4)));
-
-static st7789_drv_t *disp_drv;
 
 static struct repeating_timer lvgl_tick_timer;
 
 static volatile bool has_keypad_event = false;
 static lv_indev_t *keypad;
+static lv_display_t *main_disp;
 
 static inline uint64_t millis_since_boot()
 {
@@ -57,8 +48,6 @@ float get_vsys_voltage(void)
 int pico_led_init(void)
 {
 #if defined(PICO_DEFAULT_LED_PIN)
-    // A device like Pico that uses a GPIO for the LED will define PICO_DEFAULT_LED_PIN
-    // so we can use normal GPIO functionality to turn the led on and off
     gpio_init(PICO_DEFAULT_LED_PIN);
     gpio_set_dir(PICO_DEFAULT_LED_PIN, GPIO_OUT);
     return PICO_OK;
@@ -69,23 +58,27 @@ int pico_led_init(void)
 void pico_set_led(bool led_on)
 {
 #if defined(PICO_DEFAULT_LED_PIN)
-    // Just set the GPIO on or off
     gpio_put(PICO_DEFAULT_LED_PIN, led_on);
 #endif
+}
+
+void on_st7789_job_done()
+{
+    lv_display_flush_ready(main_disp);
 }
 
 void setup_st7789_disp()
 {
     printf("init setup_st7789_disp\n");
-    st7789_drv_setup(&disp_drv, pio0, 0,
-                     TFT_DC, TFT_CS, TFT_SCK, TFT_MOSI,
-                     TFT_BL, TFT_RST, NULL);
+    st7789_drv_setup(pio0, 0,
+                     TFT_DC, TFT_CS, TFT_SCK, TFT_MOSI, TFT_BL,
+                     TFT_RST, 2, on_st7789_job_done);
 }
 
 void st7789_flush_impl(lv_display_t *disp, const lv_area_t *area, uint8_t *px_map)
 {
-    st7789_put_pixels_for_window(disp_drv, (uint8_t)area->x1, (uint8_t)area->x2, (uint8_t)area->y1, (uint8_t)area->y2, px_map);
-    lv_display_flush_ready(disp);
+    st7789_put_pixels_for_window(area->x1, area->y1, area->x2, area->y2, px_map);
+    on_st7789_job_done();
 }
 
 void keypan_irq_handler()
@@ -147,16 +140,16 @@ void setup_lvgl()
         printf("start lv tick timer faild\n");
     }
     printf("lv_disp_create\n");
-    lv_display_t *disp = lv_display_create(SCR_W, SCR_H);
-    lv_display_set_flush_cb(disp, st7789_flush_impl);
+    main_disp = lv_display_create(SCR_W, SCR_H);
+    lv_display_set_flush_cb(main_disp, st7789_flush_impl);
     printf("lv_display_set_buffers\n");
-    lv_display_set_buffers(disp, lv_buffer, NULL, LV_BUF_SIZE, LV_DISPLAY_RENDER_MODE_PARTIAL);
+    lv_display_set_buffers(main_disp, lv_buffer, NULL, LV_BUF_SIZE, LV_DISPLAY_RENDER_MODE_PARTIAL);
 
     keypad = lv_indev_create();
     lv_indev_set_mode(keypad, LV_INDEV_MODE_EVENT);
     lv_indev_set_type(keypad, LV_INDEV_TYPE_ENCODER);
     lv_indev_set_read_cb(keypad, keypad_read_impl);
-    lv_indev_set_display(keypad, disp);
+    lv_indev_set_display(keypad, main_disp);
 
     lv_group_t *group = lv_group_create();
     lv_group_set_default(group);
@@ -173,28 +166,29 @@ void setup_lvgl()
 uint32_t tick = 0;
 uint64_t millis = 0;
 
+bool led_status = false;
+
 int main()
 {
     set_sys_clock_khz(250000, false);
     stdio_init_all();
+    pico_led_init();
     for (int i = 0; i < 5; i++)
     {
+        led_status = !led_status;
+        pico_set_led(led_status);
         printf("wait serial connect: %d\n", i);
         sleep_ms(1000);
     }
-    printf("sys clock %ld hz\n",clock_get_hz(clk_sys));
+    printf("sys clock %ld hz\n", clock_get_hz(clk_sys));
     adc_init();
     adc_gpio_init(29);
 
-    printf("led init\n");
-    int rc = pico_led_init();
-    hard_assert(rc == PICO_OK);
-    setup_st7789_disp();
-    setup_keypad();
     printf("setup lvgl\n");
     setup_lvgl();
+    setup_st7789_disp();
+    setup_keypad();
     printf("start blink\n");
-    bool led_status = false;
     millis = millis_since_boot();
     while (true)
     {
@@ -247,6 +241,7 @@ void on_screen_loaded(lv_event_t *e)
         lv_group_add_obj(group, lv_screen_active());
         lv_gridnav_add(lv_screen_active(), LV_GRIDNAV_CTRL_ROLLOVER);
     }
+    lv_group_focus_next(group);
 }
 
 void on_stepper_ctrl_keyevent(lv_event_t *e)

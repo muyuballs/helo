@@ -1,13 +1,13 @@
 
 /** 硬件IO定义 */
 
-#define TFT_BL 18 //7 
-#define TFT_RST 21 //25
+#define TFT_BL 18  // 7
+#define TFT_RST 21 // 25
 
 #define TFT_CS 19
 #define TFT_SCK 22
-#define TFT_MOSI 26 //23
-#define TFT_DC 20 //24
+#define TFT_MOSI 26 // 23
+#define TFT_DC 20   // 24
 
 #define TFT_SPI_INST spi0
 #define TFT_SPI_BAUD 40000000
@@ -20,8 +20,7 @@
 #define SCR_ROW_OFFSET 0
 
 /**其他常量定义 */
-#define LV_BUF_SIZE SCR_W * 24
-
+#define LV_BUF_SIZE SCR_W * 2 * 120
 
 /** 121 * 67 */
 

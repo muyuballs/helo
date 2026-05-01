@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define SERIAL_CLK_DIV 3.f
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
@@ -29,6 +28,9 @@ struct _st7789_drv
     job_done_cb callback;
     /* data */
 };
+
+static struct _st7789_drv drv;
+
 // Format: cmd length (including cmd byte), post delay in units of 5 ms, then cmd payload
 // Note the delays have been shortened a little
 static const uint8_t st7789_init_seq[] = {
@@ -44,113 +46,108 @@ static const uint8_t st7789_init_seq[] = {
     0                                                                 // Terminate list
 };
 
-static inline void lcd_set_dc_cs(st7789_drv_t *drv, bool dc, bool cs)
+static inline void lcd_set_dc_cs( bool dc, bool cs)
 {
     sleep_us(1);
-    gpio_put_masked((1u << drv->dc) | (1u << drv->cs), !!dc << drv->dc | !!cs << drv->cs);
+    gpio_put_masked((1u << drv.dc) | (1u << drv.cs), !!dc << drv.dc | !!cs << drv.cs);
     sleep_us(1);
 }
 
-static inline void lcd_write_cmd(st7789_drv_t *drv, const uint8_t *cmd, size_t count)
+static inline void lcd_write_cmd( const uint8_t *cmd, size_t count)
 {
-    st7789_drv_wait_idle(drv->pio, drv->sm);
-    lcd_set_dc_cs(drv, 0, 0);
-    st7789_drv_put(drv->pio, drv->sm, *cmd++);
+    st7789_drv_wait_idle(drv.pio, drv.sm);
+    lcd_set_dc_cs( 0, 0);
+    st7789_drv_put(drv.pio, drv.sm, *cmd++);
     if (count >= 2)
     {
-        st7789_drv_wait_idle(drv->pio, drv->sm);
-        lcd_set_dc_cs(drv, 1, 0);
-        for (size_t i = 0; i < count - 1; ++i)
-            st7789_drv_put(drv->pio, drv->sm, *cmd++);
+        st7789_drv_wait_idle(drv.pio, drv.sm);
+        lcd_set_dc_cs( 1, 0);
+        for (size_t i = 0; i < count - 1; ++i){
+            st7789_drv_put(drv.pio, drv.sm, *cmd++);
+        }
     }
-    st7789_drv_wait_idle(drv->pio, drv->sm);
-    lcd_set_dc_cs(drv, 1, 1);
+    st7789_drv_wait_idle(drv.pio, drv.sm);
+    lcd_set_dc_cs( 1, 1);
 }
 
-static inline void lcd_init(st7789_drv_t *drv, const uint8_t *init_seq)
+static inline void lcd_init( )
 {
-    const uint8_t *cmd = init_seq;
+    const uint8_t *cmd = st7789_init_seq;
     while (*cmd)
     {
-        lcd_write_cmd(drv, cmd + 2, *cmd);
+        lcd_write_cmd( cmd + 2, *cmd);
         sleep_ms(*(cmd + 1) * 5);
         cmd += *cmd + 2;
     }
 }
 
-static inline void _write_pixels(st7789_drv_t *drv, uint8_t *data, size_t count)
+static inline void _write_pixels( uint8_t *data, size_t count)
 {
     uint8_t cmd = 0x2c; // RAMWR
-    lcd_write_cmd(drv, &cmd, 1);
-    lcd_set_dc_cs(drv, 1, 0);
+    lcd_write_cmd( &cmd, 1);
+    lcd_set_dc_cs(1, 0);
     for (size_t i = 0; i < count; i++)
     {
-        st7789_drv_put(drv->pio, drv->sm, data[i]);
+        st7789_drv_put(drv.pio, drv.sm, data[i]);
     }
 }
 
-bool st7789_put_pixels(st7789_drv_t *drv, uint8_t *data, size_t count)
+bool st7789_put_pixels( uint8_t *data, size_t count)
 {
-    // if (drv->busy)
+    // if (drv.busy)
     // {
     //     return false;
     // }
-    // drv->busy = true;
-    _write_pixels(drv, data, count);
+    // drv.busy = true;
+    _write_pixels( data, count);
 }
 
-bool st7789_put_pixels_for_window(st7789_drv_t *drv, uint8_t x, uint8_t x1, uint8_t y, uint8_t y1, uint8_t *data)
-{
-    // if (drv->busy)
+void st7789_put_pixels_for_window(uint16_t x, uint16_t y, uint16_t x1, uint16_t y1, uint8_t *data){
+    // if (drv.busy)
     // {
     //     return false;
     // }
-    // drv->busy = true;
+    // drv.busy = true;
     // 0x2A CASET — 列地址（X）设置
     // 0x2B RASET — 行地址（Y）设置
     uint8_t caset[5] = {0x2A, x >> 8, x & 0xFF, x1 >> 8, x1 & 0xFF};
     uint8_t raset[5] = {0x2B, y >> 8, y & 0xFF, y1 >> 8, y1 & 0xFF};
-    lcd_write_cmd(drv, caset, 5);
-    lcd_write_cmd(drv, raset, 5);
-    _write_pixels(drv, data, (x1 - x + 1) * (y1 - y + 1) * 2);
+    lcd_write_cmd( caset, 5);
+    lcd_write_cmd(raset, 5);
+    _write_pixels( data, (x1 - x + 1) * (y1 - y + 1) * 2);
 }
 
-bool st7789_drv_is_busy(st7789_drv_t *drv)
-{
-    return drv->busy;
-}
 
-void st7789_drv_setup(st7789_drv_t **drv, PIO pio, uint sm,
+void st7789_drv_setup( PIO pio, uint sm,
                       uint8_t dc, uint8_t cs, uint8_t clk, uint8_t mosi,
-                      uint8_t bl, uint8_t rst, job_done_cb callback)
+                      uint8_t bl, uint8_t rst,float clk_div, job_done_cb callback)
 {
 
-    *drv = malloc(sizeof(struct _st7789_drv));
-    (*drv)->callback = callback;
-    (*drv)->bl = bl;
-    (*drv)->rst = rst;
-    (*drv)->dc = dc;
-    (*drv)->cs = cs;
-    (*drv)->clk = clk;
-    (*drv)->mosi = mosi;
-    (*drv)->pio = pio;
-    (*drv)->sm = sm;
+    drv.callback = callback;
+    drv.bl = bl;
+    drv.rst = rst;
+    drv.dc = dc;
+    drv.cs = cs;
+    drv.clk = clk;
+    drv.mosi = mosi;
+    drv.pio = pio;
+    drv.sm = sm;
 
     uint offset = pio_add_program(pio, &st7789_drv_program);
-    st7789_drv_program_init(pio, sm, offset, (*drv)->mosi, (*drv)->clk, SERIAL_CLK_DIV);
+    st7789_drv_program_init(pio, sm, offset, drv.mosi, drv.clk, clk_div);
 
-    gpio_init((*drv)->cs);
-    gpio_init((*drv)->dc);
-    gpio_init((*drv)->rst);
-    gpio_init((*drv)->bl);
-    gpio_set_dir((*drv)->cs, GPIO_OUT);
-    gpio_set_dir((*drv)->dc, GPIO_OUT);
-    gpio_set_dir((*drv)->rst, GPIO_OUT);
-    gpio_set_dir((*drv)->bl, GPIO_OUT);
+    gpio_init(drv.cs);
+    gpio_init(drv.dc);
+    gpio_init(drv.rst);
+    gpio_init(drv.bl);
+    gpio_set_dir(drv.cs, GPIO_OUT);
+    gpio_set_dir(drv.dc, GPIO_OUT);
+    gpio_set_dir(drv.rst, GPIO_OUT);
+    gpio_set_dir(drv.bl, GPIO_OUT);
 
-    gpio_put((*drv)->cs, 1);
-    gpio_put((*drv)->rst, 1);
-    lcd_init((*drv), st7789_init_seq);
+    gpio_put(drv.cs, 1);
+    gpio_put(drv.rst, 1);
+    lcd_init();
 
     // uint8_t *buf = malloc(240*2*5);
     // for (int i = 0; i < 240*5; i+=2)
@@ -166,6 +163,6 @@ void st7789_drv_setup(st7789_drv_t **drv, PIO pio, uint sm,
     // // st7789_put_pixels(*drv, buf, 240*2*5);
     // free(buf);
     
-    (*drv)->busy = false;
-    gpio_put((*drv)->bl, 1);
+    drv.busy = false;
+    gpio_put(drv.bl, 1);
 }
