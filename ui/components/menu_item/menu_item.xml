@@ -4,7 +4,7 @@
 	</previews>
 
 	<api>
-		<prop name="text" type="string" default="menu item" />
+		<prop name="text" type="string" default="步进驱动配置" />
 		<prop name="icon" type="image" default="ic_info_30" />
 	</api>
 
@@ -29,7 +29,7 @@
 			text_color="#white"
 			flex_grow="1"
 			text_font="misan_22"
-			pad_hor="12"
+			pad_hor="8"
 			text_align="left"
 		/>
 		<style name="icon_style" width="30" height="30" />

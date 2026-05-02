@@ -1,0 +1,30 @@
+<component>
+	<previews>
+		<preview width="240" height="240" style_bg_color="0xeee" />
+	</previews>
+
+	<api>
+		<prop name="title" type="string" default="SETTINGS" />
+	</api>
+
+	<styles>
+		<style
+			flex_main_place="center"
+			pad_column="4"
+			flex_cross_place="center"
+			flex_track_place="center"
+			name="toolbar_style"
+			text_color="#white"
+			text_font="misan_16"
+			bg_opa="255"
+			bg_color="0x11161b"
+			height="36"
+			width="100%"
+		/>
+	</styles>
+
+	<view extends="row">
+		<style name="toolbar_style" />
+		<lv_label text="$title" />
+	</view>
+</component>
