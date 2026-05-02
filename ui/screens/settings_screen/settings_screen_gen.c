@@ -35,7 +35,6 @@ lv_obj_t * settings_screen_create(void)
     LV_TRACE_OBJ_CREATE("begin");
 
     static lv_style_t main_style;
-    static lv_style_t title_bar;
     static lv_style_t items;
     static lv_style_t item;
 
@@ -46,18 +45,6 @@ lv_obj_t * settings_screen_create(void)
         lv_style_set_width(&main_style, lv_pct(100));
         lv_style_set_height(&main_style, lv_pct(100));
         lv_style_set_bg_image_src(&main_style, main_bg);
-
-        lv_style_init(&title_bar);
-        lv_style_set_flex_main_place(&title_bar, LV_FLEX_ALIGN_CENTER);
-        lv_style_set_pad_column(&title_bar, 4);
-        lv_style_set_flex_cross_place(&title_bar, LV_FLEX_ALIGN_CENTER);
-        lv_style_set_flex_track_place(&title_bar, LV_FLEX_ALIGN_CENTER);
-        lv_style_set_text_color(&title_bar, WHITE);
-        lv_style_set_text_font(&title_bar, misan_16);
-        lv_style_set_bg_opa(&title_bar, 255);
-        lv_style_set_bg_color(&title_bar, lv_color_hex(0x11161b));
-        lv_style_set_height(&title_bar, 36);
-        lv_style_set_width(&title_bar, lv_pct(100));
 
         lv_style_init(&items);
         lv_style_set_pad_hor(&items, 8);
@@ -79,10 +66,7 @@ lv_obj_t * settings_screen_create(void)
     lv_obj_add_style(column_0, &main_style, 0);
     lv_obj_add_event_cb(column_0, on_screen_loaded, LV_EVENT_SCREEN_LOADED, NULL);
     lv_obj_add_event_cb(column_0, on_menu_screen_keyevent, LV_EVENT_KEY, NULL);
-    lv_obj_t * row_0 = row_create(column_0);
-    lv_obj_add_style(row_0, &title_bar, 0);
-    lv_obj_t * lv_label_0 = lv_label_create(row_0);
-    lv_label_set_text(lv_label_0, "设置");
+    toolbar_create(column_0, "设置", 32);
     
     lv_obj_t * menu = column_create(column_0);
     lv_obj_set_name(menu, "menu");

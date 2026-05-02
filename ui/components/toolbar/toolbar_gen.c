@@ -30,7 +30,7 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
-lv_obj_t * toolbar_create(lv_obj_t * parent, const char * title)
+lv_obj_t * toolbar_create(lv_obj_t * parent, const char * title, int32_t height)
 {
     LV_TRACE_OBJ_CREATE("begin");
 
@@ -48,7 +48,7 @@ lv_obj_t * toolbar_create(lv_obj_t * parent, const char * title)
         lv_style_set_text_font(&toolbar_style, misan_16);
         lv_style_set_bg_opa(&toolbar_style, 255);
         lv_style_set_bg_color(&toolbar_style, lv_color_hex(0x11161b));
-        lv_style_set_height(&toolbar_style, 36);
+        lv_style_set_height(&toolbar_style, height);
         lv_style_set_width(&toolbar_style, lv_pct(100));
 
         style_inited = true;

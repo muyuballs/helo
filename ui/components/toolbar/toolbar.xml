@@ -5,6 +5,7 @@
 
 	<api>
 		<prop name="title" type="string" default="SETTINGS" />
+		<prop name="height" type="int" default="32" />
 	</api>
 
 	<styles>
@@ -18,7 +19,7 @@
 			text_font="misan_16"
 			bg_opa="255"
 			bg_color="0x11161b"
-			height="36"
+			height="$height"
 			width="100%"
 		/>
 	</styles>

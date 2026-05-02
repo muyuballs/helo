@@ -33,7 +33,7 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
-lv_obj_t * toolbar_create(lv_obj_t * parent, const char * title);
+lv_obj_t * toolbar_create(lv_obj_t * parent, const char * title, int32_t height);
 
 /**********************
  *      MACROS
