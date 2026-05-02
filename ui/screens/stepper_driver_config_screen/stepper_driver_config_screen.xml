@@ -1,6 +1,14 @@
 <screen>
-	<view extends="column">
+	<styles>
+		<style name="content" width="100%" flex_grow="1" />
+	</styles>
+	<view extends="column" scrollable="false">
 		<style name="screen_base" />
+		<event_cb callback="on_screen_loaded" trigger="screen_loaded" />
+		<event_cb callback="on_stepper_driver_config_keyevent" trigger="key" />
 		<toolbar title="步进驱动配置" />
+		<column event_bubble="true" scrollable="true" scrollbar_mode="off">
+			<style name="content" />
+		</column>
 	</view>
 </screen>

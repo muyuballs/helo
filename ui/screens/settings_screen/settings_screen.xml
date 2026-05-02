@@ -1,6 +1,6 @@
 <screen>
 	<styles>
-		<style name="items" pad_hor="8" pad_row="8" flex_grow="1" width="100%" />
+		<style name="items" pad_top="8" pad_hor="8" pad_row="8" flex_grow="1" width="100%" />
 		<style name="item" height="69" width="100%" />
 	</styles>
 	<view extends="column" scrollable="false">
