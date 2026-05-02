@@ -9,8 +9,6 @@
 #define TFT_MOSI 26 // 23
 #define TFT_DC 20   // 24
 
-#define TFT_SPI_INST spi0
-#define TFT_SPI_BAUD 40000000
 
 /**屏幕属性定义 */
 #define SCR_W 240
@@ -20,7 +18,7 @@
 #define SCR_ROW_OFFSET 0
 
 /**其他常量定义 */
-#define LV_BUF_SIZE SCR_W * 2 * 120
+#define LV_BUF_SIZE SCR_W * 2 * 240
 
 /** 121 * 67 */
 

@@ -1,0 +1,13 @@
+在 ST7789 驱动中，屏幕旋转是通过修改 MADCTL (36h) 寄存器（Memory Data Access Control）来实现的。
+这个寄存器控制了显存写入的方向（行/列交换、镜像等）。
+1. 核心控制位 (MADCTL - 36h)MADCTL 的高 3 位是控制旋转的关键：
+MY (Bit 7): 行地址顺序 (0: Top to Bottom, 1: Bottom to Top)
+MX (Bit 6): 列地址顺序 (0: Left to Right, 1: Right to Left)
+MV (Bit 5): 行/列交换 (0: Normal, 1: Address Mode) 
+—— 这是横屏/竖屏切换的关键
+2. 四种旋转角度的配置假设你使用的是标准 240x240 或 240x320 屏幕，配置通常如下：
+旋转角度MADCTL 值效果描述0° (竖屏)
+0 x00初始方向
+90° (横屏)0x60 MX=1, MV=1 (顺时针旋转 90°)
+180° (倒置)0xC0 MX=1, MY=1
+270° (横屏)0xA0 MY=1, MV=1 (逆时针旋转 90°)

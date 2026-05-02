@@ -9,6 +9,7 @@ list(
   ${CMAKE_CURRENT_LIST_DIR}/components/rotate_dir/rotate_dir_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/row/row_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/stepper_titlebar/stepper_titlebar_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/components/toolbar/toolbar_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/fonts/font_medium_48_data.c
   ${CMAKE_CURRENT_LIST_DIR}/fonts/font_medium_data.c
   ${CMAKE_CURRENT_LIST_DIR}/fonts/misan_16_data.c

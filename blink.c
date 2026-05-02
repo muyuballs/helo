@@ -15,7 +15,6 @@
 #include "st7789_drv/st7789_drv.h"
 #include "ui_helo.h"
 
-
 uint8_t lv_buffer[LV_BUF_SIZE] __attribute__((aligned(4)));
 
 static struct repeating_timer lvgl_tick_timer;
@@ -143,7 +142,7 @@ void setup_lvgl()
     main_disp = lv_display_create(SCR_W, SCR_H);
     lv_display_set_flush_cb(main_disp, st7789_flush_impl);
     printf("lv_display_set_buffers\n");
-    lv_display_set_buffers(main_disp, lv_buffer, NULL, LV_BUF_SIZE, LV_DISPLAY_RENDER_MODE_PARTIAL);
+    lv_display_set_buffers(main_disp, lv_buffer, NULL, LV_BUF_SIZE, LV_DISPLAY_RENDER_MODE_FULL);
 
     keypad = lv_indev_create();
     lv_indev_set_mode(keypad, LV_INDEV_MODE_EVENT);

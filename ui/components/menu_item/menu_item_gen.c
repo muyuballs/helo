@@ -62,7 +62,7 @@ lv_obj_t * menu_item_create(lv_obj_t * parent, const char * text, const void * i
         lv_style_set_text_color(&title_style, WHITE);
         lv_style_set_flex_grow(&title_style, 1);
         lv_style_set_text_font(&title_style, misan_22);
-        lv_style_set_pad_hor(&title_style, 12);
+        lv_style_set_pad_hor(&title_style, 8);
         lv_style_set_text_align(&title_style, LV_TEXT_ALIGN_LEFT);
 
         lv_style_init(&icon_style);
