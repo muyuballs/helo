@@ -34,18 +34,12 @@ lv_obj_t * settings_screen_create(void)
 {
     LV_TRACE_OBJ_CREATE("begin");
 
-    static lv_style_t main_style;
     static lv_style_t items;
     static lv_style_t item;
 
     static bool style_inited = false;
 
     if (!style_inited) {
-        lv_style_init(&main_style);
-        lv_style_set_width(&main_style, lv_pct(100));
-        lv_style_set_height(&main_style, lv_pct(100));
-        lv_style_set_bg_image_src(&main_style, main_bg);
-
         lv_style_init(&items);
         lv_style_set_pad_hor(&items, 8);
         lv_style_set_pad_row(&items, 8);
@@ -63,7 +57,7 @@ lv_obj_t * settings_screen_create(void)
     lv_obj_set_name_static(column_0, "settings_screen_#");
     lv_obj_set_flag(column_0, LV_OBJ_FLAG_SCROLLABLE, false);
 
-    lv_obj_add_style(column_0, &main_style, 0);
+    lv_obj_add_style(column_0, &screen_base, 0);
     lv_obj_add_event_cb(column_0, on_screen_loaded, LV_EVENT_SCREEN_LOADED, NULL);
     lv_obj_add_event_cb(column_0, on_menu_screen_keyevent, LV_EVENT_KEY, NULL);
     toolbar_create(column_0, "设置", 32);

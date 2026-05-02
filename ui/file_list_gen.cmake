@@ -18,5 +18,6 @@ list(
   ${CMAKE_CURRENT_LIST_DIR}/images/mitem_bg_data.c
   ${CMAKE_CURRENT_LIST_DIR}/screens/settings_screen/settings_screen_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/screens/stepper_ctrl_screen/stepper_ctrl_screen_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/screens/stepper_driver_config_screen/stepper_driver_config_screen_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/ui_helo_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/ui_helo.c)

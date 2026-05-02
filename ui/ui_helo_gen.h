@@ -66,6 +66,7 @@ extern "C" {
  *----------------*/
 
 extern lv_style_t section_title;
+extern lv_style_t screen_base;
 
 /*----------------
  * Fonts
@@ -138,6 +139,7 @@ void ui_helo_init_gen(const char * asset_path);
 #include "components/toolbar/toolbar_gen.h"
 #include "screens/settings_screen/settings_screen_gen.h"
 #include "screens/stepper_ctrl_screen/stepper_ctrl_screen_gen.h"
+#include "screens/stepper_driver_config_screen/stepper_driver_config_screen_gen.h"
 
 #ifdef __cplusplus
 } /*extern "C"*/

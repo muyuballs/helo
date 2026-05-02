@@ -76,6 +76,7 @@ extern const void * ic_stepper_30_data;
  *----------------*/
 
 lv_style_t section_title;
+lv_style_t screen_base;
 
 /*----------------
  * Subjects
@@ -136,6 +137,11 @@ void ui_helo_init_gen(const char * asset_path)
     if (!style_inited) {
         lv_style_init(&section_title);
         lv_style_set_text_color(&section_title, SECTION_TITLE_TEXT);
+
+        lv_style_init(&screen_base);
+        lv_style_set_width(&screen_base, lv_pct(100));
+        lv_style_set_height(&screen_base, lv_pct(100));
+        lv_style_set_bg_image_src(&screen_base, main_bg);
 
         style_inited = true;
     }
