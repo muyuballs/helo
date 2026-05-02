@@ -19,6 +19,7 @@
 	<styles>
 		<!-- Add <style> tags here -->
 		<style name="section_title" text_color="#section_title_text" />
+		<style name="screen_base" width="100%" height="100%" bg_image_src="main_bg" />
 	</styles>
 
 	<subjects>

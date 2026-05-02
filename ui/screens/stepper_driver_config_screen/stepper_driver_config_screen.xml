@@ -1,0 +1,6 @@
+<screen>
+	<view extends="column">
+		<style name="screen_base" />
+		<toolbar title="步进驱动配置" />
+	</view>
+</screen>

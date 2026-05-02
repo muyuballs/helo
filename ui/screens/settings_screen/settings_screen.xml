@@ -1,15 +1,14 @@
 <screen>
 	<styles>
-		<style name="main_style" width="100%" height="100%" bg_image_src="main_bg" />
 		<style name="items" pad_hor="8" pad_row="8" flex_grow="1" width="100%" />
 		<style name="item" height="69" width="100%" />
 	</styles>
 	<view extends="column" scrollable="false">
-		<style name="main_style" />
+		<style name="screen_base" />
 		<event_cb callback="on_screen_loaded" trigger="screen_loaded" />
 		<event_cb callback="on_menu_screen_keyevent" trigger="key" />
 		<toolbar title="设置" />
-		<column name="menu" event_bubble="true"  scrollable="true" scrollbar_mode="off">
+		<column name="menu" event_bubble="true" scrollable="true" scrollbar_mode="off">
 			<style name="items" />
 			<menu_item text="步进驱动配置" icon="ic_stepper_30">
 				<style name="item" />

@@ -1,12 +1,13 @@
 <screen>
 	<styles>
-		<style name="style_base" bg_image_src="main_bg" pad_all="4" layout="none" height="100%" width="100%" />
+		<style name="style_base" pad_all="4" layout="none" />
 		<style name="comment_text" text_color="#darkGrey" />
 		<style name="ctrl_base" align="center" width="160" height="160" radius="255" bg_opa="255" bg_color="#grey" />
 		<style name="rpm_base" text_font="font_medium_48" />
 	</styles>
-	<view extends="lv_obj" width="100%" height="100%" scrollable="false" scrollbar_mode="off">
+	<view extends="lv_obj" scrollable="false" scrollbar_mode="off">
 		<remove_style />
+		<style name="screen_base" />
 		<style name="style_base" />
 		<event_cb callback="on_screen_loaded" trigger="screen_loaded" />
 		<event_cb callback="on_stepper_ctrl_keyevent" trigger="key" />
