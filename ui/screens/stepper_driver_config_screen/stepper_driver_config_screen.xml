@@ -1,6 +1,7 @@
 <screen>
 	<styles>
-		<style name="content" width="100%" flex_grow="1" />
+		<style name="content" pad_all="8" pad_row="8" flex_track_place="start" width="100%" flex_grow="1" />
+		<style name="sub_title" text_font="misan_16" text_color="#darkGrey" />
 	</styles>
 	<view extends="column" scrollable="false">
 		<style name="screen_base" />
@@ -9,6 +10,15 @@
 		<toolbar title="步进驱动配置" />
 		<column event_bubble="true" scrollable="true" scrollbar_mode="off">
 			<style name="content" />
+			<lv_label text="驱动类型">
+				<style name="sub_title" />
+			</lv_label>
+			<lv_label text="细分设置">
+				<style name="sub_title" />
+			</lv_label>
+			<lv_label text="旋转方向">
+				<style name="sub_title" />
+			</lv_label>
 		</column>
 	</view>
 </screen>
