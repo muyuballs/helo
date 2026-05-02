@@ -48,7 +48,7 @@ lv_obj_t * toolbar_create(lv_obj_t * parent, const char * title, int32_t height)
         lv_style_set_text_font(&toolbar_style, misan_16);
         lv_style_set_bg_opa(&toolbar_style, 255);
         lv_style_set_bg_color(&toolbar_style, lv_color_hex(0x11161b));
-        lv_style_set_height(&toolbar_style, height);
+        lv_style_set_height(&toolbar_style, 32);
         lv_style_set_width(&toolbar_style, lv_pct(100));
 
         style_inited = true;
@@ -56,6 +56,7 @@ lv_obj_t * toolbar_create(lv_obj_t * parent, const char * title, int32_t height)
 
     lv_obj_t * row_0 = row_create(parent);
     lv_obj_set_name_static(row_0, "toolbar_#");
+    lv_obj_set_height(row_0, height);
 
     lv_obj_add_style(row_0, &toolbar_style, 0);
     lv_obj_t * lv_label_0 = lv_label_create(row_0);

@@ -192,6 +192,7 @@ void ui_helo_init_gen(const char * asset_path)
     lv_xml_register_event_cb(NULL, "on_menu_screen_keyevent", on_menu_screen_keyevent);
     lv_xml_register_event_cb(NULL, "on_menu_item_clicked", on_menu_item_clicked);
     lv_xml_register_event_cb(NULL, "on_stepper_ctrl_keyevent", on_stepper_ctrl_keyevent);
+    lv_xml_register_event_cb(NULL, "on_stepper_driver_config_keyevent", on_stepper_driver_config_keyevent);
 #endif
 
     /* Register all the global assets so that they won't be created again when globals.xml is parsed.
@@ -242,6 +243,11 @@ void __attribute__((weak)) on_stepper_ctrl_keyevent(lv_event_t * e)
 {
     LV_UNUSED(e);
     LV_LOG("on_stepper_ctrl_keyevent was called\n");
+}
+void __attribute__((weak)) on_stepper_driver_config_keyevent(lv_event_t * e)
+{
+    LV_UNUSED(e);
+    LV_LOG("on_stepper_driver_config_keyevent was called\n");
 }
 #endif
 

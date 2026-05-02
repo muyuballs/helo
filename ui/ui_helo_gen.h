@@ -117,6 +117,7 @@ void on_screen_loaded(lv_event_t * e);
 void on_menu_screen_keyevent(lv_event_t * e);
 void on_menu_item_clicked(lv_event_t * e);
 void on_stepper_ctrl_keyevent(lv_event_t * e);
+void on_stepper_driver_config_keyevent(lv_event_t * e);
 
 /**
  * Initialize the component library

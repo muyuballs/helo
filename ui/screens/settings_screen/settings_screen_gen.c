@@ -41,6 +41,7 @@ lv_obj_t * settings_screen_create(void)
 
     if (!style_inited) {
         lv_style_init(&items);
+        lv_style_set_pad_top(&items, 8);
         lv_style_set_pad_hor(&items, 8);
         lv_style_set_pad_row(&items, 8);
         lv_style_set_flex_grow(&items, 1);

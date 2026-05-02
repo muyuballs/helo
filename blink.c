@@ -15,6 +15,14 @@
 #include "st7789_drv/st7789_drv.h"
 #include "ui_helo.h"
 
+#define PUSH_SCR(x)           \
+    lv_obj_t *scr = (x)(); \
+    lv_screen_load_anim(scr, LV_SCREEN_LOAD_ANIM_MOVE_LEFT, 500, 0, true);
+
+#define POP_SCR(x)         \
+    lv_obj_t *scr = (x)(); \
+    lv_screen_load_anim(scr, LV_SCREEN_LOAD_ANIM_MOVE_RIGHT, 500, 0, true);
+
 uint8_t lv_buffer[LV_BUF_SIZE] __attribute__((aligned(4)));
 
 static struct repeating_timer lvgl_tick_timer;
@@ -240,7 +248,6 @@ void on_screen_loaded(lv_event_t *e)
         lv_group_add_obj(group, lv_screen_active());
         lv_gridnav_add(lv_screen_active(), LV_GRIDNAV_CTRL_ROLLOVER);
     }
-    lv_group_focus_next(group);
 }
 
 void on_stepper_ctrl_keyevent(lv_event_t *e)
@@ -251,8 +258,7 @@ void on_stepper_ctrl_keyevent(lv_event_t *e)
     {
         uint32_t key = lv_event_get_key(e);
         printf("key: %d", key);
-        lv_obj_t *settings_screen = settings_screen_create();
-        lv_screen_load_anim(settings_screen, LV_SCREEN_LOAD_ANIM_MOVE_LEFT, 500, 0, true);
+        PUSH_SCR(settings_screen_create);
     }
     printf("\n");
 }
@@ -279,8 +285,7 @@ void on_menu_screen_keyevent(lv_event_t *e)
         printf("key: %d", key);
         if (key == LV_KEY_ESC)
         {
-            lv_obj_t *stepper_ctrl_screen = stepper_ctrl_screen_create();
-            lv_screen_load_anim(stepper_ctrl_screen, LV_SCREEN_LOAD_ANIM_MOVE_RIGHT, 500, 0, true);
+            POP_SCR(stepper_ctrl_screen_create);
         }
     }
     printf("\n");
@@ -290,4 +295,24 @@ void on_menu_item_clicked(lv_event_t *e)
 {
     void *which = lv_event_get_user_data(e);
     printf("on_menu_item_clicked:%s\n", which);
+    if (lv_strcmp(which, "0") == 0)
+    {
+        PUSH_SCR(stepper_driver_config_screen_create);
+    }
+}
+
+void on_stepper_driver_config_keyevent(lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    printf("event code:%d ", code);
+    if (code == LV_EVENT_KEY)
+    {
+        uint32_t key = lv_event_get_key(e);
+        printf("key: %d", key);
+        if (key == LV_KEY_ESC)
+        {
+            POP_SCR(settings_screen_create);
+        }
+    }
+    printf("\n");
 }
