@@ -1,6 +1,6 @@
 <component>
 	<previews>
-		<preview width="240" height="240" style_bg_image_src="main_bg" style_bg_color="0xeee" />
+		<preview width="240" height="240" style_bg_image_src="main_bg" />
 	</previews>
 
 	<api>

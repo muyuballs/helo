@@ -26,9 +26,10 @@
 		<int name="stepper_status" value="1" />
 
 		<string name="load_str" value="0.0 mA" />
-
+		<!-- 0 tmc2209 1 a4988 -->
 		<int name="driver_type" value="0" />
 		<int name="micro_steps" value="8" />
+		<!-- 0 cw 1 ccw -->
 		<int name="rotate_dir" value="0" />
 		<float name="rpm" value="0.0" />
 		<float name="vol" value="0.0" />

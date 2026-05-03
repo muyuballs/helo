@@ -10,7 +10,8 @@
 			flex_grow="1"
 		/>
 		<style name="sub_title" text_font="misan_16" text_color="#darkGrey" />
-		<style name="radios_container" width="100%" height="content" />
+		<style name="radios_container" pad_column="6" width="100%" height="content" />
+		<style name="radio_item" radius="14" height="32" flex_grow="1" />
 	</styles>
 	<view extends="column" scrollable="false">
 		<style name="screen_base" />
@@ -24,7 +25,14 @@
 			</lv_label>
 			<row event_bubble="true" click_focusable="true">
 				<style name="radios_container" />
-				<lv_checkbox text="TMC2209" />
+				<radio label="TMC2209">
+					<style name="radio_item" />
+					<bind_state_if_eq subject="driver_type" ref_value="0" state="checked" />
+				</radio>
+				<radio label="A4988">
+					<style name="radio_item" />
+					<bind_state_if_eq subject="driver_type" ref_value="1" state="checked" />
+				</radio>
 			</row>
 			<lv_label text="细分设置">
 				<style name="sub_title" />
@@ -32,6 +40,17 @@
 			<lv_label text="旋转方向">
 				<style name="sub_title" />
 			</lv_label>
+			<row event_bubble="true" click_focusable="true">
+				<style name="radios_container" />
+				<radio label="CW">
+					<style name="radio_item" />
+					<bind_state_if_eq subject="rotate_dir" ref_value="0" state="checked" />
+				</radio>
+				<radio label="CCW">
+					<style name="radio_item" />
+					<bind_state_if_eq subject="rotate_dir" ref_value="1" state="checked" />
+				</radio>
+			</row>
 		</column>
 	</view>
 </screen>

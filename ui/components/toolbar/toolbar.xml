@@ -17,7 +17,7 @@
 			name="toolbar_style"
 			text_color="#white"
 			text_font="misan_16"
-			bg_opa="255"
+			bg_opa="45%"
 			bg_color="0x11161b"
 			height="32"
 			width="100%"
