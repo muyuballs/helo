@@ -36,6 +36,7 @@ lv_obj_t * stepper_driver_config_screen_create(void)
 
     static lv_style_t content;
     static lv_style_t sub_title;
+    static lv_style_t radios_container;
 
     static bool style_inited = false;
 
@@ -43,6 +44,7 @@ lv_obj_t * stepper_driver_config_screen_create(void)
         lv_style_init(&content);
         lv_style_set_pad_all(&content, 8);
         lv_style_set_pad_row(&content, 8);
+        lv_style_set_flex_cross_place(&content, LV_FLEX_ALIGN_START);
         lv_style_set_flex_track_place(&content, LV_FLEX_ALIGN_START);
         lv_style_set_width(&content, lv_pct(100));
         lv_style_set_flex_grow(&content, 1);
@@ -50,6 +52,10 @@ lv_obj_t * stepper_driver_config_screen_create(void)
         lv_style_init(&sub_title);
         lv_style_set_text_font(&sub_title, misan_16);
         lv_style_set_text_color(&sub_title, DARKGREY);
+
+        lv_style_init(&radios_container);
+        lv_style_set_width(&radios_container, lv_pct(100));
+        lv_style_set_height(&radios_container, LV_SIZE_CONTENT);
 
         style_inited = true;
     }
@@ -71,6 +77,13 @@ lv_obj_t * stepper_driver_config_screen_create(void)
     lv_obj_t * lv_label_0 = lv_label_create(column_1);
     lv_label_set_text(lv_label_0, "驱动类型");
     lv_obj_add_style(lv_label_0, &sub_title, 0);
+    
+    lv_obj_t * row_0 = row_create(column_1);
+    lv_obj_set_flag(row_0, LV_OBJ_FLAG_EVENT_BUBBLE, true);
+    lv_obj_set_flag(row_0, LV_OBJ_FLAG_CLICK_FOCUSABLE, true);
+    lv_obj_add_style(row_0, &radios_container, 0);
+    lv_obj_t * lv_checkbox_0 = lv_checkbox_create(row_0);
+    lv_checkbox_set_text(lv_checkbox_0, "TMC2209");
     
     lv_obj_t * lv_label_1 = lv_label_create(column_1);
     lv_label_set_text(lv_label_1, "细分设置");

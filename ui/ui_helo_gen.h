@@ -136,6 +136,7 @@ void ui_helo_init_gen(const char * asset_path);
 /*Include all the widgets, components and screens of this library*/
 #include "components/column/column_gen.h"
 #include "components/menu_item/menu_item_gen.h"
+#include "components/radio/radio_gen.h"
 #include "components/row/row_gen.h"
 #include "components/toolbar/toolbar_gen.h"
 #include "screens/settings_screen/settings_screen_gen.h"

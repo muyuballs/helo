@@ -3,6 +3,7 @@ list(
   LV_EDITOR_PROJECT_SOURCES
   ${CMAKE_CURRENT_LIST_DIR}/components/column/column_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/menu_item/menu_item_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/components/radio/radio_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/row/row_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/toolbar/toolbar_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/fonts/font_medium_48_data.c
