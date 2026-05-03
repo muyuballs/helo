@@ -37,6 +37,7 @@ lv_obj_t * stepper_driver_config_screen_create(void)
     static lv_style_t content;
     static lv_style_t sub_title;
     static lv_style_t radios_container;
+    static lv_style_t radio_item;
 
     static bool style_inited = false;
 
@@ -54,8 +55,14 @@ lv_obj_t * stepper_driver_config_screen_create(void)
         lv_style_set_text_color(&sub_title, DARKGREY);
 
         lv_style_init(&radios_container);
+        lv_style_set_pad_column(&radios_container, 6);
         lv_style_set_width(&radios_container, lv_pct(100));
         lv_style_set_height(&radios_container, LV_SIZE_CONTENT);
+
+        lv_style_init(&radio_item);
+        lv_style_set_radius(&radio_item, 14);
+        lv_style_set_height(&radio_item, 32);
+        lv_style_set_flex_grow(&radio_item, 1);
 
         style_inited = true;
     }
@@ -82,8 +89,13 @@ lv_obj_t * stepper_driver_config_screen_create(void)
     lv_obj_set_flag(row_0, LV_OBJ_FLAG_EVENT_BUBBLE, true);
     lv_obj_set_flag(row_0, LV_OBJ_FLAG_CLICK_FOCUSABLE, true);
     lv_obj_add_style(row_0, &radios_container, 0);
-    lv_obj_t * lv_checkbox_0 = lv_checkbox_create(row_0);
-    lv_checkbox_set_text(lv_checkbox_0, "TMC2209");
+    lv_obj_t * radio_0 = radio_create(row_0, "TMC2209");
+    lv_obj_add_style(radio_0, &radio_item, 0);
+    lv_obj_bind_state_if_eq(radio_0, &driver_type, LV_STATE_CHECKED, 0);
+    
+    lv_obj_t * radio_1 = radio_create(row_0, "A4988");
+    lv_obj_add_style(radio_1, &radio_item, 0);
+    lv_obj_bind_state_if_eq(radio_1, &driver_type, LV_STATE_CHECKED, 1);
     
     lv_obj_t * lv_label_1 = lv_label_create(column_1);
     lv_label_set_text(lv_label_1, "细分设置");
@@ -92,6 +104,18 @@ lv_obj_t * stepper_driver_config_screen_create(void)
     lv_obj_t * lv_label_2 = lv_label_create(column_1);
     lv_label_set_text(lv_label_2, "旋转方向");
     lv_obj_add_style(lv_label_2, &sub_title, 0);
+    
+    lv_obj_t * row_1 = row_create(column_1);
+    lv_obj_set_flag(row_1, LV_OBJ_FLAG_EVENT_BUBBLE, true);
+    lv_obj_set_flag(row_1, LV_OBJ_FLAG_CLICK_FOCUSABLE, true);
+    lv_obj_add_style(row_1, &radios_container, 0);
+    lv_obj_t * radio_2 = radio_create(row_1, "CW");
+    lv_obj_add_style(radio_2, &radio_item, 0);
+    lv_obj_bind_state_if_eq(radio_2, &rotate_dir, LV_STATE_CHECKED, 0);
+    
+    lv_obj_t * radio_3 = radio_create(row_1, "CCW");
+    lv_obj_add_style(radio_3, &radio_item, 0);
+    lv_obj_bind_state_if_eq(radio_3, &rotate_dir, LV_STATE_CHECKED, 1);
 
     LV_TRACE_OBJ_CREATE("finished");
 
