@@ -1,7 +1,16 @@
 <screen>
 	<styles>
-		<style name="content" pad_all="8" pad_row="8" flex_track_place="start" width="100%" flex_grow="1" />
+		<style
+			name="content"
+			pad_all="8"
+			pad_row="8"
+			flex_cross_place="start"
+			flex_track_place="start"
+			width="100%"
+			flex_grow="1"
+		/>
 		<style name="sub_title" text_font="misan_16" text_color="#darkGrey" />
+		<style name="radios_container" width="100%" height="content" />
 	</styles>
 	<view extends="column" scrollable="false">
 		<style name="screen_base" />
@@ -13,6 +22,10 @@
 			<lv_label text="驱动类型">
 				<style name="sub_title" />
 			</lv_label>
+			<row event_bubble="true" click_focusable="true">
+				<style name="radios_container" />
+				<lv_checkbox text="TMC2209" />
+			</row>
 			<lv_label text="细分设置">
 				<style name="sub_title" />
 			</lv_label>
