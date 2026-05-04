@@ -11,11 +11,19 @@
 		/>
 		<style name="sub_title" text_font="misan_16" text_color="#darkGrey" />
 		<style name="radios_container" pad_column="6" width="100%" height="content" />
-		<style name="radio_item" grid_column_align="stretch" radius="14" height="32" flex_grow="1" />
+		<style
+			name="radio_item"
+			grid_column_align="stretch"
+			grid_row_align="stretch"
+			radius="14"
+			height="32"
+			flex_grow="1"
+		/>
 		<style
 			name="micro_steps_container"
 			layout="grid"
-			grid_column_dsc_array="536870812,536870812,536870812,536870812"
+			grid_column_dsc_array="536870812,536870812,536870812"
+			grid_row_dsc_array="32,32,32"
 			width="100%"
 			height="content"
 			pad_column="6"
@@ -49,31 +57,39 @@
 			<lv_obj event_bubble="true" click_focusable="true">
 				<remove_style />
 				<style name="micro_steps_container" />
-				<radio label="1">
+				<radio label="1/1" style_grid_cell_row_pos="0" style_grid_cell_column_pos="0">
 					<style name="radio_item" />
 					<bind_state_if_eq subject="micro_steps" ref_value="0" state="checked" />
 				</radio>
-				<radio label="8">
+				<radio label="1/2" style_grid_cell_row_pos="0" style_grid_cell_column_pos="1">
 					<style name="radio_item" />
 					<bind_state_if_eq subject="micro_steps" ref_value="1" state="checked" />
 				</radio>
-				<radio label="16">
+				<radio label="1/4" style_grid_cell_row_pos="0" style_grid_cell_column_pos="2">
 					<style name="radio_item" />
 					<bind_state_if_eq subject="micro_steps" ref_value="1" state="checked" />
 				</radio>
-				<radio label="32">
+				<radio label="1/8" style_grid_cell_row_pos="1" style_grid_cell_column_pos="0">
 					<style name="radio_item" />
 					<bind_state_if_eq subject="micro_steps" ref_value="1" state="checked" />
 				</radio>
-				<radio label="64">
+				<radio label="1/16" style_grid_cell_row_pos="1" style_grid_cell_column_pos="1">
 					<style name="radio_item" />
 					<bind_state_if_eq subject="micro_steps" ref_value="1" state="checked" />
 				</radio>
-				<radio label="128">
+				<radio label="1/32" style_grid_cell_row_pos="1" style_grid_cell_column_pos="2">
 					<style name="radio_item" />
 					<bind_state_if_eq subject="micro_steps" ref_value="1" state="checked" />
 				</radio>
-				<radio label="256">
+				<radio label="1/64" style_grid_cell_row_pos="2" style_grid_cell_column_pos="0">
+					<style name="radio_item" />
+					<bind_state_if_eq subject="micro_steps" ref_value="1" state="checked" />
+				</radio>
+				<radio label="1/128" style_grid_cell_row_pos="2" style_grid_cell_column_pos="1">
+					<style name="radio_item" />
+					<bind_state_if_eq subject="micro_steps" ref_value="1" state="checked" />
+				</radio>
+				<radio label="1/256" style_grid_cell_row_pos="2" style_grid_cell_column_pos="2">
 					<style name="radio_item" />
 					<bind_state_if_eq subject="micro_steps" ref_value="1" state="checked" />
 				</radio>
