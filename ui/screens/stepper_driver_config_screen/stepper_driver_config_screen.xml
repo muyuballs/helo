@@ -11,7 +11,16 @@
 		/>
 		<style name="sub_title" text_font="misan_16" text_color="#darkGrey" />
 		<style name="radios_container" pad_column="6" width="100%" height="content" />
-		<style name="radio_item" radius="14" height="32" flex_grow="1" />
+		<style name="radio_item" grid_column_align="stretch" radius="14" height="32" flex_grow="1" />
+		<style
+			name="micro_steps_container"
+			layout="grid"
+			grid_column_dsc_array="536870812,536870812,536870812,536870812"
+			width="100%"
+			height="content"
+			pad_column="6"
+			pad_row="4"
+		/>
 	</styles>
 	<view extends="column" scrollable="false">
 		<style name="screen_base" />
@@ -37,6 +46,38 @@
 			<lv_label text="细分设置">
 				<style name="sub_title" />
 			</lv_label>
+			<lv_obj event_bubble="true" click_focusable="true">
+				<remove_style />
+				<style name="micro_steps_container" />
+				<radio label="1">
+					<style name="radio_item" />
+					<bind_state_if_eq subject="micro_steps" ref_value="0" state="checked" />
+				</radio>
+				<radio label="8">
+					<style name="radio_item" />
+					<bind_state_if_eq subject="micro_steps" ref_value="1" state="checked" />
+				</radio>
+				<radio label="16">
+					<style name="radio_item" />
+					<bind_state_if_eq subject="micro_steps" ref_value="1" state="checked" />
+				</radio>
+				<radio label="32">
+					<style name="radio_item" />
+					<bind_state_if_eq subject="micro_steps" ref_value="1" state="checked" />
+				</radio>
+				<radio label="64">
+					<style name="radio_item" />
+					<bind_state_if_eq subject="micro_steps" ref_value="1" state="checked" />
+				</radio>
+				<radio label="128">
+					<style name="radio_item" />
+					<bind_state_if_eq subject="micro_steps" ref_value="1" state="checked" />
+				</radio>
+				<radio label="256">
+					<style name="radio_item" />
+					<bind_state_if_eq subject="micro_steps" ref_value="1" state="checked" />
+				</radio>
+			</lv_obj>
 			<lv_label text="旋转方向">
 				<style name="sub_title" />
 			</lv_label>
