@@ -35,7 +35,7 @@
 		<event_cb callback="on_screen_loaded" trigger="screen_loaded" />
 		<event_cb callback="on_stepper_driver_config_keyevent" trigger="key" />
 		<toolbar title="步进驱动配置" />
-		<column event_bubble="true" scrollable="true" scrollbar_mode="off">
+		<column name="menu" event_bubble="true" scrollable="true" scrollbar_mode="off">
 			<style name="content" />
 			<lv_label text="驱动类型">
 				<style name="sub_title" />

@@ -242,6 +242,11 @@ void on_screen_loaded(lv_event_t *e)
         lv_obj_t *menu = lv_obj_find_by_name(target, "menu");
         lv_group_add_obj(group, menu);
         lv_gridnav_add(menu, LV_GRIDNAV_CTRL_ROLLOVER);
+    } else if (lv_strcmp("stepper_driver_config_screen_#", lv_obj_get_name(target)) == 0)
+    {
+        lv_obj_t *menu = lv_obj_find_by_name(target, "menu");
+        lv_group_add_obj(group, menu);
+        lv_gridnav_add(menu, LV_GRIDNAV_CTRL_ROLLOVER);
     }
     else
     {
